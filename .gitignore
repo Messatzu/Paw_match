@@ -1,0 +1,50 @@
+
+# ==========================================
+# PawMatch - Android Studio / Java
+# ==========================================
+
+# Gradle - archivos generados
+.gradle/
+**/build/
+.kotlin/
+
+# Configuración local del SDK
+local.properties
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Archivos compilados
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Claves y certificados privados
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Builds nativos
+.externalNativeBuild/
+.cxx/
+
+# Capturas y registros
+captures/
+*.log
+*.hprof
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
