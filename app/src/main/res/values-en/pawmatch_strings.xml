@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pm_cambiar_modo">Switch demo role</string>
+    <string name="pm_explorar">Explore</string>
+    <string name="pm_solicitudes">My requests</string>
+    <string name="pm_reiniciar">Reset demo data</string>
+    <string name="pm_provisional">Temporary screen for testing the shared foundation. Profiles and contact details are fictional.</string>
+    <string name="pm_crear">Create test request</string>
+    <string name="pm_aprobar">Approve first pending request</string>
+    <string name="pm_rechazar">Reject first pending request</string>
+    <string name="pm_modo_refugio">PawMatch · Shelter mode</string>
+    <string name="pm_modo_adoptante">PawMatch · Adopter mode</string>
+    <string name="pm_panel">Shelter panel</string>
+    <string name="pm_sin_mascotas">Every pet already has a request.</string>
+    <string name="pm_pendiente">Pending</string>
+    <string name="pm_aprobada">Approved</string>
+    <string name="pm_rechazada">Rejected</string>
+    <string name="pm_contacto">Contact unlocked: %1$s</string>
+    <string name="pm_sin_solicitudes">No requests yet.</string>
+    <string name="pm_sin_pendientes">No pending requests.</string>
+    <string name="pm_ok">Done.</string>
+    <string name="pm_duplicada">The request already exists.</string>
+    <string name="pm_ya_resuelta">The request was already resolved.</string>
+    <string name="pm_error">The operation could not be completed.</string>
+</resources>
