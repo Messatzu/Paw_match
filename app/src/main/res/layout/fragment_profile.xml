@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/paw_cream">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="Foto de perfil" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Usuario"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/paw_dark"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="correo@ejemplo.com"
+            android:textSize="13sp"
+            android:textColor="@color/paw_gray"
+            android:layout_marginBottom="2dp" />
+
+        <!-- Ubicación del usuario -->
+        <TextView
+            android:id="@+id/tvUserLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍 Santa Fe, Argentina"
+            android:textSize="13sp"
+            android:textColor="@color/paw_gray"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Descripción pequeña / Biografía -->
+        <TextView
+            android:id="@+id/tvUserBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amante de los animales y busco darle un hogar lleno de amor a una mascota."
+            android:textSize="14sp"
+            android:textColor="@color/paw_dark"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:paddingHorizontal="16dp" />
+
+        <!-- Sección de Mascota Adoptada -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/paw_white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    text="Mi Mascota Adoptada"
+                    android:text="Mascota Adoptada"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/paw_green"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Foto de la mascota adoptada -->
+                <ImageView
+                    android:id="@+id/imgAdoptedPet"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="Foto de mascota adoptada" />
+
+                <TextView
+                    android:id="@+id/tvAdoptedPetName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Luna (Adoptada exitosamente)"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/paw_dark" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Perfil"
+            android:textColor="@color/paw_white"
+            android:backgroundTint="@color/paw_green"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textColor="@color/paw_coral"
+            style="?attr/materialButtonOutlinedStyle" />
+
+    </LinearLayout>
+</ScrollView>

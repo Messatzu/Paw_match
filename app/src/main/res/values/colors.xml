@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Paleta oficial de Paw Match -->
+    <color name="paw_green">#176B63</color>       <!-- Verde principal -->
+    <color name="paw_coral">#EF8A73</color>       <!-- Coral / Corazón -->
+    <color name="paw_cream">#FFF8F0</color>       <!-- Fondo crema clarito -->
+    <color name="paw_white">#FFFFFF</color>       <!-- Blanco puro -->
+    <color name="paw_dark">#24343D</color>        <!-- Texto oscuro / Principal -->
+    <color name="paw_gray">#64757B</color>        <!-- Gris secundario -->
 </resources>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/paw_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Foto de la mascota solicitada -->
+        <ImageView
+            android:id="@+id/imgRequestPet"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Foto de la mascota" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPetRequestTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Solicitud para: [Mascota]"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/paw_green"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Datos del Solicitante -->
+            <TextView
+                android:id="@+id/tvApplicantName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre: Juan Pérez"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/paw_dark"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:id="@+id/tvApplicantEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo: juan@ejemplo.com"
+                android:textSize="14sp"
+                android:textColor="@color/paw_gray"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:id="@+id/tvApplicantLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vive en: Santa Fe"
+                android:textSize="14sp"
+                android:textColor="@color/paw_gray"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:id="@+id/tvApplicantBio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bio: Me encantan los animales..."
+                android:textSize="14sp"
+                android:textColor="@color/paw_dark"
+                android:layout_marginBottom="6dp" />
+
+            <!-- Historial de adopción previa -->
+            <TextView
+                android:id="@+id/tvAdoptionHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐾 Ya ha adoptado antes en la app (Mascota previa: Max)"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="@color/paw_green"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Botones de Acción -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Aceptar"
+                    android:textColor="@color/paw_white"
+                    android:backgroundTint="@color/paw_green"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnReject"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rechazar"
+                    android:textColor="@color/paw_coral"
+                    style="?attr/materialButtonOutlinedStyle" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
