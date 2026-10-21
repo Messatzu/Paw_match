@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pm_app_name">PawMatch</string>
     <string name="pm_cambiar_modo">Switch demo role</string>
     <string name="pm_explorar">Explore</string>
-    <string name="pm_solicitudes">My requests</string>
+    <string name="pm_solicitudes">Requests</string>
+    <string name="pm_perfil">Profile</string>
+    <string name="pm_pasar">Skip</string>
+    <string name="pm_me_interesa">Interested</string>
+    <string name="pm_ver_detalles">View details</string>
     <string name="pm_reiniciar">Reset demo data</string>
     <string name="pm_provisional">Temporary screen for testing the shared foundation. Profiles and contact details are fictional.</string>
     <string name="pm_crear">Create test request</string>
