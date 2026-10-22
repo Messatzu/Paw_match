@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="260dp"
+    android:viewportWidth="320"
+    android:viewportHeight="260">
+    <!-- Background -->
+    <path
+        android:fillColor="#EADEC9"
+        android:pathData="M0,0h320v260h-320z"/>
+    <!-- Dog Body & Neck -->
+    <path
+        android:fillColor="#D88D37"
+        android:pathData="M90,160 L230,160 L250,260 L70,260 Z"/>
+    <!-- Dog Head Base -->
+    <path
+        android:fillColor="#E09540"
+        android:pathData="M95,75 Q160,45 225,75 Q245,155 215,200 Q160,225 105,200 Q75,155 95,75 Z"/>
+    <!-- Left Ear -->
+    <path
+        android:fillColor="#A65D1A"
+        android:pathData="M75,75 Q35,95 55,165 Q85,175 100,125 Z"/>
+    <!-- Right Ear -->
+    <path
+        android:fillColor="#A65D1A"
+        android:pathData="M245,75 Q285,95 265,165 Q235,175 220,125 Z"/>
+    <!-- Muzzle / Snout -->
+    <path
+        android:fillColor="#FFF6EB"
+        android:pathData="M120,125 Q160,105 200,125 Q210,180 160,190 Q110,180 120,125 Z"/>
+    <!-- Nose -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M142,130 Q160,122 178,130 Q178,146 160,152 Q142,146 142,130 Z"/>
+    <!-- Open Mouth & Tongue -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M148,152 Q160,150 172,152 Q172,175 160,180 Q148,175 148,152 Z"/>
+    <path
+        android:fillColor="#E27367"
+        android:pathData="M150,158 Q160,155 170,158 Q170,182 160,186 Q150,182 150,158 Z"/>
+    <!-- Left Eye -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M122,95 A8,8 0 1,1 138,95 A8,8 0 1,1 122,95 Z"/>
+    <!-- Right Eye -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M182,95 A8,8 0 1,1 198,95 A8,8 0 1,1 182,95 Z"/>
+    <!-- Eye Sparkles -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M125,92 A2.5,2.5 0 1,1 130,92 A2.5,2.5 0 1,1 125,92 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M185,92 A2.5,2.5 0 1,1 190,92 A2.5,2.5 0 1,1 185,92 Z"/>
+</vector>

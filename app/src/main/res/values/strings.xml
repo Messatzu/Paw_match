@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Paw_match</string>
+    <string name="title_activity_main_screen_adoptantes">MainScreenAdoptantes</string>
 </resources>

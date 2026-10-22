@@ -1,4 +1,5 @@
 package com.example.paw_match;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -7,14 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.paw_match.ui.demo.DemoFragment;
+import com.example.paw_match.ui.explorar.ExplorarFragment;
 import com.example.paw_match.ui.shared.PawMatchViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private PawMatchViewModel vm;
     private boolean restaurando;
-    @Override protected void onCreate(Bundle savedInstanceState) {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -24,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         vm = new ViewModelProvider(this).get(PawMatchViewModel.class);
-        // El modo se conserva al recrear la actividad, pero el proceso nuevo inicia la demo.
         if (savedInstanceState != null && savedInstanceState.getBoolean("pm_refugio") != vm.esModoRefugio())
             vm.cambiarModo();
         restaurando = savedInstanceState != null;
@@ -41,13 +45,18 @@ public class MainActivity extends AppCompatActivity {
             restaurando = false;
         });
     }
+
     private void abrir(String destino) {
         if (getSupportFragmentManager().isStateSaved()) return;
-        // Destinos principales: no se apilan como pantallas de detalle.
+        Fragment fragment = DemoFragment.EXPLORAR.equals(destino)
+                ? ExplorarFragment.Companion.newInstance()
+                : DemoFragment.nueva(destino);
         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
-                .replace(R.id.pm_contenedor, DemoFragment.nueva(destino)).commit();
+                .replace(R.id.pm_contenedor, fragment).commit();
     }
-    @Override protected void onSaveInstanceState(Bundle outState) {
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean("pm_refugio", vm.esModoRefugio());
         super.onSaveInstanceState(outState);
     }
