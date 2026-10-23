@@ -7,4 +7,25 @@
     <color name="paw_white">#FFFFFF</color>       <!-- Blanco puro -->
     <color name="paw_dark">#24343D</color>        <!-- Texto oscuro / Principal -->
     <color name="paw_gray">#64757B</color>        <!-- Gris secundario -->
+    <color name="paw_error">#B3261E</color>
+
+    <!-- Roles de la interfaz: los colores de marca se conservan en ambos modos. -->
+    <color name="paw_background">@color/paw_cream</color>
+    <color name="paw_surface">@color/paw_white</color>
+    <color name="paw_surface_variant">@color/paw_cream</color>
+    <color name="paw_primary">@color/paw_green</color>
+    <color name="paw_on_primary">@color/paw_white</color>
+    <color name="paw_header_background">@color/paw_green</color>
+    <color name="paw_on_header">@color/paw_white</color>
+    <color name="paw_text_primary">@color/paw_dark</color>
+    <color name="paw_text_secondary">@color/paw_gray</color>
+    <color name="paw_border">@color/paw_gray</color>
+    <color name="paw_outline_soft">#DCE6DF</color>
+    <color name="paw_accent">@color/paw_coral</color>
+    <color name="paw_on_accent">@color/paw_dark</color>
+    <color name="paw_text_error">@color/paw_error</color>
+    <color name="paw_on_error">@color/paw_white</color>
+    <color name="paw_chat_sent">@color/paw_coral</color>
+    <color name="paw_snackbar_background">@color/paw_dark</color>
+    <color name="paw_ripple">#24176B63</color>
 </resources>

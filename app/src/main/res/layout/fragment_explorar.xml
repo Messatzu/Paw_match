@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/paw_cream">
+    android:background="@color/paw_background">
 
     <!-- Top Header Logo -->
     <LinearLayout
         android:id="@+id/header_logo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="320dp"
+        <com.example.paw_match.ui.shared.BrandBannerView
+            android:layout_width="match_parent"
             android:layout_height="65dp"
             android:contentDescription="@string/pm_app_name"
             android:src="@drawable/ic_paw_huella" />
@@ -34,7 +37,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:text="@string/pm_explorar"
-        android:textColor="@color/paw_dark"
+        android:textColor="@color/paw_text_primary"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,13 +47,16 @@
     <!-- Card Principal Mascota con Bordes Redondeados (24dp) y Borde Visible (2dp) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_mascota"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="@color/paw_white"
+        app:cardBackgroundColor="@color/paw_surface"
+        app:rippleColor="@color/paw_accent"
         app:cardCornerRadius="35dp"
         app:cardElevation="4dp"
         app:cardPreventCornerOverlap="false"
@@ -59,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo_explorar"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Card"
-        app:strokeColor="@color/paw_gray"
+        app:strokeColor="@color/paw_border"
         app:strokeWidth="2dp">
 
         <LinearLayout
@@ -97,8 +103,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Luna"
-                        android:textColor="@color/paw_dark"
+                        tools:text="Luna"
+                        android:textColor="@color/paw_text_primary"
                         android:textSize="26sp"
                         android:textStyle="bold" />
 
@@ -108,11 +114,11 @@
                         android:layout_width="44dp"
                         android:layout_height="44dp"
                         android:background="@drawable/bg_circle_green"
-                        android:contentDescription="Ver detalles"
+                        android:contentDescription="@string/pet_view_details"
                         android:elevation="3dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_add_plus"
-                        app:tint="@color/paw_white" />
+                        app:tint="@color/paw_on_primary" />
                 </LinearLayout>
 
                 <TextView
@@ -120,8 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="2 años • Santa Fe"
-                    android:textColor="@color/paw_gray"
+                    tools:text="2 años • Santa Fe"
+                    android:textColor="@color/paw_text_secondary"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -149,12 +155,12 @@
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
             android:text="@string/pm_pasar"
-            android:textColor="@color/paw_dark"
+            android:textColor="@color/paw_text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="35dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Button"
-            app:strokeColor="@color/paw_gray"
+            app:strokeColor="@color/paw_border"
             app:strokeWidth="2dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -163,9 +169,9 @@
             android:layout_height="52dp"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/paw_green"
+            android:backgroundTint="@color/paw_primary"
             android:text="@string/pm_me_interesa"
-            android:textColor="@color/paw_white"
+            android:textColor="@color/paw_on_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="26dp"
@@ -176,11 +182,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@color/paw_white"
+        android:layout_height="@dimen/paw_bottom_navigation_height"
+        android:background="@color/paw_surface"
         app:elevation="8dp"
-        app:itemIconTint="@color/paw_green"
-        app:itemTextColor="@color/paw_green"
+        app:itemIconTint="@color/paw_primary"
+        app:itemTextColor="@color/paw_primary"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

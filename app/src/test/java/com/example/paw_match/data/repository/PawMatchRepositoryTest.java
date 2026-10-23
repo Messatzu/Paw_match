@@ -50,4 +50,23 @@ public class PawMatchRepositoryTest {
         assertTrue(r.obtenerSolicitudesRefugio("otro").isEmpty());
         assertEquals(1, r.obtenerSolicitudesRefugio(r.obtenerRefugioDemo().getId()).size());
     }
+    @Test public void colaDelPublicadorSoloContienePendientesDeSuRefugio() {
+        PawMatchRepository r = new PawMatchRepository();
+        String adoptante = r.obtenerAdoptanteDemo().getId();
+        String refugio = r.obtenerRefugioDemo().getId();
+        r.crearSolicitud("m1", adoptante);
+        r.crearSolicitud("m2", adoptante);
+        r.crearSolicitud("m3", adoptante);
+        java.util.List<SolicitudAdopcion> antes = r.obtenerSolicitudesPendientesRefugio(refugio);
+        r.resolverSolicitud(antes.get(0).getId(), EstadoSolicitud.APROBADA);
+        r.resolverSolicitud(antes.get(1).getId(), EstadoSolicitud.RECHAZADA);
+
+        java.util.List<SolicitudAdopcion> pendientes = r.obtenerSolicitudesPendientesRefugio(refugio);
+        assertEquals(1, pendientes.size());
+        assertEquals("m3", pendientes.get(0).getMascotaId());
+        assertEquals(EstadoSolicitud.PENDIENTE, pendientes.get(0).getEstado());
+        assertTrue(r.obtenerSolicitudesPendientesRefugio("otro-refugio").isEmpty());
+        assertEquals(3, antes.size());
+        assertEquals(3, r.obtenerSolicitudesAdoptante(adoptante).size());
+    }
 }

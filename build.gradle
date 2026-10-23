@@ -1,0 +1,4 @@
+// Configuración común de los módulos del proyecto.
+plugins {
+    alias(libs.plugins.android.application) apply false
+}

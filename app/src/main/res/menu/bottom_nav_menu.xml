@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_nav_solicitudes"
         android:title="@string/pm_solicitudes" />
     <item
+        android:id="@+id/nav_chats"
+        android:icon="@drawable/ic_nav_chats"
+        android:title="@string/chat_title" />
+    <item
         android:id="@+id/nav_perfil"
         android:icon="@drawable/ic_nav_perfil"
         android:title="@string/pm_perfil" />

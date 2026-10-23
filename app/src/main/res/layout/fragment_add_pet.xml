@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/paw_cream">
+    android:paddingTop="56dp"
+    android:clipToPadding="true"
+    android:background="@color/paw_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +17,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Publicar Nueva Mascota"
+            android:text="@string/pet_add_title"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@color/paw_green"
+            android:textColor="@color/paw_primary"
             android:layout_marginBottom="24dp" />
 
         <ImageView
@@ -26,58 +28,58 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:scaleType="centerCrop"
-            android:background="@color/paw_gray"
+            android:background="@color/paw_border"
             android:layout_marginBottom="12dp"
-            android:contentDescription="Foto de la mascota" />
+            android:contentDescription="@string/pet_photo_description" />
 
         <Button
             android:id="@+id/btnSelectPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seleccionar Foto"
-            android:textColor="@color/paw_white"
-            android:backgroundTint="@color/paw_coral"
+            android:text="@string/pet_select_photo"
+            android:textColor="@color/paw_on_accent"
+            android:backgroundTint="@color/paw_accent"
             android:layout_marginBottom="20dp" />
 
         <EditText
             android:id="@+id/etPetName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la mascota"
-            android:textColorHint="@color/paw_gray"
-            android:textColor="@color/paw_dark"
-            android:backgroundTint="@color/paw_green"
+            android:hint="@string/pet_name_hint"
+            android:textColorHint="@color/paw_text_secondary"
+            android:textColor="@color/paw_text_primary"
+            android:backgroundTint="@color/paw_primary"
             android:layout_marginBottom="16dp" />
 
         <EditText
             android:id="@+id/etPetAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Edad y Ubicación (ej. 2 años • Santa Fe)"
-            android:textColorHint="@color/paw_gray"
-            android:textColor="@color/paw_dark"
-            android:backgroundTint="@color/paw_green"
+            android:hint="@string/pet_age_location_hint"
+            android:textColorHint="@color/paw_text_secondary"
+            android:textColor="@color/paw_text_primary"
+            android:backgroundTint="@color/paw_primary"
             android:layout_marginBottom="16dp" />
 
         <EditText
             android:id="@+id/etPetDescription"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:hint="Descripción y detalles..."
-            android:textColorHint="@color/paw_gray"
-            android:textColor="@color/paw_dark"
+            android:hint="@string/pet_description_hint"
+            android:textColorHint="@color/paw_text_secondary"
+            android:textColor="@color/paw_text_primary"
             android:gravity="top"
             android:inputType="textMultiLine"
-            android:backgroundTint="@color/paw_green"
+            android:backgroundTint="@color/paw_primary"
             android:layout_marginBottom="24dp" />
 
         <Button
             android:id="@+id/btnSavePet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Publicar Mascota"
-            android:textColor="@color/paw_white"
-            android:backgroundTint="@color/paw_green" />
+            android:text="@string/pet_publish"
+            android:textColor="@color/paw_on_primary"
+            android:backgroundTint="@color/paw_primary" />
 
     </LinearLayout>
 </ScrollView>

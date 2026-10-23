@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="pm_app_name">PawMatch</string>
-    <string name="pm_cambiar_modo">Switch demo role</string>
     <string name="pm_explorar">Explore</string>
     <string name="pm_solicitudes">Requests</string>
     <string name="pm_perfil">Profile</string>
     <string name="pm_pasar">Skip</string>
     <string name="pm_me_interesa">Interested</string>
-    <string name="pm_ver_detalles">View details</string>
-    <string name="pm_reiniciar">Reset demo data</string>
-    <string name="pm_provisional">Temporary screen for testing the shared foundation. Profiles and contact details are fictional.</string>
-    <string name="pm_crear">Create test request</string>
-    <string name="pm_aprobar">Approve first pending request</string>
-    <string name="pm_rechazar">Reject first pending request</string>
-    <string name="pm_modo_refugio">PawMatch · Shelter mode</string>
-    <string name="pm_modo_adoptante">PawMatch · Adopter mode</string>
-    <string name="pm_panel">Shelter panel</string>
-    <string name="pm_sin_mascotas">Every pet already has a request.</string>
     <string name="pm_pendiente">Pending</string>
     <string name="pm_aprobada">Approved</string>
     <string name="pm_rechazada">Rejected</string>
-    <string name="pm_contacto">Contact unlocked: %1$s</string>
     <string name="pm_sin_solicitudes">No requests yet.</string>
-    <string name="pm_sin_pendientes">No pending requests.</string>
     <string name="pm_ok">Done.</string>
     <string name="pm_duplicada">The request already exists.</string>
-    <string name="pm_ya_resuelta">The request was already resolved.</string>
     <string name="pm_error">The operation could not be completed.</string>
+    <string name="pm_publications">Publications</string>
+    <string name="pm_pending_requests_title">Pending requests</string>
+    <string name="pm_my_requests_title">My requests</string>
+    <string name="pm_no_pending_requests_title">No pending requests</string>
+    <string name="pm_no_pending_requests_body">When someone applies to adopt one of your pets, their request will appear here.</string>
+    <string name="pm_no_sent_requests_body">Your adoption requests will appear here.</string>
+    <string name="pm_request_applicant">Applicant</string>
+    <string name="pm_request_applicant_location">Lives in %1$s</string>
+    <string name="pm_request_pet_details">%1$s • %2$s</string>
+    <string name="pm_request_pet_photo">Photo of %1$s</string>
+    <string name="pm_request_accept">Accept</string>
+    <string name="pm_request_reject">Reject</string>
+    <string name="pm_request_accept_for">Accept %1$s’s request for %2$s</string>
+    <string name="pm_request_reject_for">Reject %1$s’s request for %2$s</string>
+    <string name="pm_request_accepted">Request accepted.</string>
+    <string name="pm_request_rejected">Request rejected.</string>
+    <plurals name="pm_pending_requests_count">
+        <item quantity="one">%d request awaiting a response</item>
+        <item quantity="other">%d requests awaiting a response</item>
+    </plurals>
+    <plurals name="pm_requests_count">
+        <item quantity="one">%d adoption request</item>
+        <item quantity="other">%d adoption requests</item>
+    </plurals>
 </resources>

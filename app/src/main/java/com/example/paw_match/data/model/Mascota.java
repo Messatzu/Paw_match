@@ -15,10 +15,6 @@ public final class Mascota {
     private final String nacimiento;
     private final String ciudad;
 
-    public Mascota(String id, String nombre, String especie, String edad, String tamano, String temperamento, String historia, String imagenNombre, String refugioId) {
-        this(id, nombre, especie, edad, tamano, temperamento, historia, imagenNombre, refugioId, "12 kg", "Marzo 2022", "Santa Fe");
-    }
-
     public Mascota(String id, String nombre, String especie, String edad, String tamano, String temperamento, String historia, String imagenNombre, String refugioId, String peso, String nacimiento, String ciudad) {
         this.id = id;
         this.nombre = nombre;

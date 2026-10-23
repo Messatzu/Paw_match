@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/paw_cream">
+    android:background="@color/paw_background">
+
+    <ScrollView
+        android:id="@+id/profile_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:paddingTop="56dp"
+        android:clipToPadding="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,35 +31,43 @@
             android:src="@mipmap/ic_launcher_round"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
-            android:contentDescription="Foto de perfil" />
+            android:contentDescription="@string/profile_photo_description" />
 
         <TextView
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de Usuario"
+            tools:text="Nombre de Usuario"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/paw_dark"
+            android:textColor="@color/paw_text_primary"
             android:layout_marginBottom="2dp" />
 
         <TextView
             android:id="@+id/tvUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="correo@ejemplo.com"
+            tools:text="correo@ejemplo.com"
             android:textSize="13sp"
-            android:textColor="@color/paw_gray"
+            android:textColor="@color/paw_text_secondary"
             android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/tvUserRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/paw_primary"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
         <!-- Ubicación del usuario -->
         <TextView
             android:id="@+id/tvUserLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📍 Santa Fe, Argentina"
+            tools:text="📍 Santa Fe, Argentina"
             android:textSize="13sp"
-            android:textColor="@color/paw_gray"
+            android:textColor="@color/paw_text_secondary"
             android:layout_marginBottom="8dp" />
 
         <!-- Descripción pequeña / Biografía -->
@@ -55,76 +75,73 @@
             android:id="@+id/tvUserBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Amante de los animales y busco darle un hogar lleno de amor a una mascota."
+            android:text="@string/profile_no_bio"
             android:textSize="14sp"
-            android:textColor="@color/paw_dark"
+            android:textColor="@color/paw_text_primary"
             android:gravity="center"
             android:layout_marginBottom="20dp"
             android:paddingHorizontal="16dp" />
 
-        <!-- Sección de Mascota Adoptada -->
-        <androidx.cardview.widget.CardView
+        <TextView
+            android:id="@+id/tvProfileHistoryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/profile_adoption_history_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/paw_primary" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerProfileHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvNoAdoptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/paw_white">
+            android:gravity="center"
+            android:text="@string/profile_no_adoptions"
+            android:textColor="@color/paw_text_secondary" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    text="Mi Mascota Adoptada"
-                    android:text="Mascota Adoptada"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/paw_green"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- Foto de la mascota adoptada -->
-                <ImageView
-                    android:id="@+id/imgAdoptedPet"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="Foto de mascota adoptada" />
-
-                <TextView
-                    android:id="@+id/tvAdoptedPetName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Luna (Adoptada exitosamente)"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/paw_dark" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/btnEditProfile"
+        <TextView
+            android:id="@+id/tvProfileError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar Perfil"
-            android:textColor="@color/paw_white"
-            android:backgroundTint="@color/paw_green"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="12dp"
+            android:accessibilityLiveRegion="polite"
+            android:textColor="@color/paw_text_error"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cerrar Sesión"
-            android:textColor="@color/paw_coral"
+            android:text="@string/profile_logout"
+            android:textColor="@color/paw_accent"
             style="?attr/materialButtonOutlinedStyle" />
 
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/paw_bottom_navigation_height"
+        android:background="@color/paw_surface"
+        app:elevation="8dp"
+        app:itemIconTint="@color/paw_primary"
+        app:itemTextColor="@color/paw_primary"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

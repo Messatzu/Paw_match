@@ -1,35 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="120dp"
-    android:layout_height="150dp"
-    android:layout_marginEnd="12dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/paw_white">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/historyPublicationRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/paw_surface"
+    app:rippleColor="@color/paw_accent"
+    app:strokeColor="@color/paw_border"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/imgAdoptedPet"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/paw_surface_variant"
             android:scaleType="centerCrop"
-            android:contentDescription="Foto de mascota adoptada" />
+            tools:src="@drawable/mascota_luna" />
 
-        <TextView
-            android:id="@+id/tvAdoptedPetName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/paw_dark"
-            android:layout_marginTop="8dp" />
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAdoptedPetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/paw_text_primary"
+                tools:text="Luna" />
+
+            <TextView
+                android:id="@+id/tvHistoryPetDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/paw_text_secondary"
+                tools:text="2 años • Santa Fe" />
+
+            <TextView
+                android:id="@+id/tvHistoryStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_request_status"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/paw_primary"
+                tools:text="@string/profile_history_adopted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/pet_view_details"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/paw_primary" />
+        </LinearLayout>
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

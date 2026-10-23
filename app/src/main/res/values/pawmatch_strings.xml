@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="pm_app_name">PawMatch</string>
-    <string name="pm_cambiar_modo">Cambiar modo demo</string>
     <string name="pm_explorar">Explorar</string>
     <string name="pm_solicitudes">Solicitudes</string>
     <string name="pm_perfil">Perfil</string>
     <string name="pm_pasar">Pasar</string>
     <string name="pm_me_interesa">Me interesa</string>
-    <string name="pm_ver_detalles">Ver detalles</string>
-    <string name="pm_reiniciar">Reiniciar datos de la demo</string>
-    <string name="pm_provisional">Pantalla provisional para probar la base compartida. Los perfiles y contactos son ficticios.</string>
-    <string name="pm_crear">Crear solicitud de prueba</string>
-    <string name="pm_aprobar">Aprobar primera pendiente</string>
-    <string name="pm_rechazar">Rechazar primera pendiente</string>
-    <string name="pm_modo_refugio">PawMatch · Modo refugio</string>
-    <string name="pm_modo_adoptante">PawMatch · Modo adoptante</string>
-    <string name="pm_panel">Panel del refugio</string>
-    <string name="pm_sin_mascotas">Todas las mascotas ya tienen una solicitud.</string>
     <string name="pm_pendiente">Pendiente</string>
     <string name="pm_aprobada">Aprobada</string>
     <string name="pm_rechazada">Rechazada</string>
-    <string name="pm_contacto">Contacto habilitado: %1$s</string>
     <string name="pm_sin_solicitudes">Todavía no hay solicitudes.</string>
-    <string name="pm_sin_pendientes">No hay solicitudes pendientes.</string>
     <string name="pm_ok">Operación realizada.</string>
     <string name="pm_duplicada">La solicitud ya existe.</string>
-    <string name="pm_ya_resuelta">La solicitud ya fue resuelta.</string>
     <string name="pm_error">No se pudo realizar la operación.</string>
+    <string name="pm_publications">Publicaciones</string>
+    <string name="pm_pending_requests_title">Solicitudes pendientes</string>
+    <string name="pm_my_requests_title">Mis solicitudes</string>
+    <string name="pm_no_pending_requests_title">No hay solicitudes pendientes</string>
+    <string name="pm_no_pending_requests_body">Cuando alguien solicite adoptar una de tus mascotas, aparecerá aquí.</string>
+    <string name="pm_no_sent_requests_body">Las solicitudes de adopción que envíes aparecerán aquí.</string>
+    <string name="pm_request_applicant">Solicitante</string>
+    <string name="pm_request_applicant_location">Vive en %1$s</string>
+    <string name="pm_request_pet_details">%1$s • %2$s</string>
+    <string name="pm_request_pet_photo">Foto de %1$s</string>
+    <string name="pm_request_accept">Aceptar</string>
+    <string name="pm_request_reject">Rechazar</string>
+    <string name="pm_request_accept_for">Aceptar solicitud de %1$s para %2$s</string>
+    <string name="pm_request_reject_for">Rechazar solicitud de %1$s para %2$s</string>
+    <string name="pm_request_accepted">Solicitud aceptada.</string>
+    <string name="pm_request_rejected">Solicitud rechazada.</string>
+    <plurals name="pm_pending_requests_count">
+        <item quantity="one">%d solicitud pendiente de respuesta</item>
+        <item quantity="other">%d solicitudes pendientes de respuesta</item>
+    </plurals>
+    <plurals name="pm_requests_count">
+        <item quantity="one">%d solicitud de adopción</item>
+        <item quantity="other">%d solicitudes de adopción</item>
+    </plurals>
 </resources>

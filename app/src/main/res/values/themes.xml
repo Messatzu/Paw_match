@@ -1,10 +1,30 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Paw_match" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+<resources>
+    <style name="Theme.Paw_match" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/paw_primary</item>
+        <item name="colorOnPrimary">@color/paw_on_primary</item>
+        <item name="colorPrimaryContainer">@color/paw_surface_variant</item>
+        <item name="colorOnPrimaryContainer">@color/paw_text_primary</item>
+        <item name="colorSecondary">@color/paw_accent</item>
+        <item name="colorOnSecondary">@color/paw_on_accent</item>
+        <item name="colorSecondaryContainer">@color/paw_surface_variant</item>
+        <item name="colorOnSecondaryContainer">@color/paw_text_primary</item>
+        <item name="android:colorBackground">@color/paw_background</item>
+        <item name="android:windowBackground">@color/paw_background</item>
+        <item name="colorOnBackground">@color/paw_text_primary</item>
+        <item name="colorSurface">@color/paw_surface</item>
+        <item name="colorOnSurface">@color/paw_text_primary</item>
+        <item name="colorSurfaceVariant">@color/paw_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/paw_text_secondary</item>
+        <item name="colorOutline">@color/paw_border</item>
+        <item name="colorOutlineVariant">@color/paw_outline_soft</item>
+        <item name="colorError">@color/paw_text_error</item>
+        <item name="colorOnError">@color/paw_on_error</item>
+        <item name="colorControlNormal">@color/paw_text_secondary</item>
+        <item name="colorControlActivated">@color/paw_primary</item>
+        <item name="colorControlHighlight">@color/paw_ripple</item>
+        <item name="android:colorAccent">@color/paw_primary</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
-
-    <style name="Theme.Paw_match" parent="Base.Theme.Paw_match" />
 
     <!-- Shape Appearance Overlays para Bordes Redondeados -->
     <style name="ShapeAppearance.PawMatch.TopRounded" parent="ShapeAppearance.Material3.Corner.Medium">
@@ -20,5 +40,8 @@
 
     <style name="ShapeAppearance.PawMatch.Button" parent="ShapeAppearance.Material3.Corner.Full">
         <item name="cornerSize">26dp</item>
+    </style>
+    <style name="ShapeAppearance.PawMatch.ChatAvatar" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

@@ -1,118 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:cardBackgroundColor="@color/paw_white">
+    android:layout_height="match_parent"
+    android:background="@color/paw_background">
+
+    <com.example.paw_match.ui.shared.BrandBannerView
+        android:id="@+id/header_logo"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:contentDescription="@string/pm_app_name"
+        android:src="@drawable/ic_paw_huella"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRequestsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/pm_pending_requests_title"
+        android:textColor="@color/paw_text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_logo" />
+
+    <TextView
+        android:id="@+id/tvRequestsCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="4dp"
+        android:accessibilityLiveRegion="polite"
+        android:textColor="@color/paw_text_secondary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRequestsTitle"
+        tools:text="2 solicitudes pendientes de respuesta" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRequests"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRequestsCount"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        tools:listitem="@layout/item_publisher_request" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/emptyRequests"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRequestsCount"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
 
-        <!-- Foto de la mascota solicitada -->
         <ImageView
-            android:id="@+id/imgRequestPet"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Foto de la mascota" />
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_nav_solicitudes"
+            app:tint="@color/paw_primary" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvEmptyRequestsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/pm_no_pending_requests_title"
+            android:textColor="@color/paw_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvPetRequestTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Solicitud para: [Mascota]"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/paw_green"
-                android:layout_marginBottom="8dp" />
-
-            <!-- Datos del Solicitante -->
-            <TextView
-                android:id="@+id/tvApplicantName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre: Juan Pérez"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/paw_dark"
-                android:layout_marginBottom="2dp" />
-
-            <TextView
-                android:id="@+id/tvApplicantEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Correo: juan@ejemplo.com"
-                android:textSize="14sp"
-                android:textColor="@color/paw_gray"
-                android:layout_marginBottom="2dp" />
-
-            <TextView
-                android:id="@+id/tvApplicantLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vive en: Santa Fe"
-                android:textSize="14sp"
-                android:textColor="@color/paw_gray"
-                android:layout_marginBottom="2dp" />
-
-            <TextView
-                android:id="@+id/tvApplicantBio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bio: Me encantan los animales..."
-                android:textSize="14sp"
-                android:textColor="@color/paw_dark"
-                android:layout_marginBottom="6dp" />
-
-            <!-- Historial de adopción previa -->
-            <TextView
-                android:id="@+id/tvAdoptionHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🐾 Ya ha adoptado antes en la app (Mascota previa: Max)"
-                android:textSize="13sp"
-                android:textStyle="italic"
-                android:textColor="@color/paw_green"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Botones de Acción -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnAccept"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Aceptar"
-                    android:textColor="@color/paw_white"
-                    android:backgroundTint="@color/paw_green"
-                    android:layout_marginEnd="8dp" />
-
-                <Button
-                    android:id="@+id/btnReject"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Rechazar"
-                    android:textColor="@color/paw_coral"
-                    style="?attr/materialButtonOutlinedStyle" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvEmptyRequestsBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/pm_no_pending_requests_body"
+            android:textColor="@color/paw_text_secondary"
+            android:textSize="15sp" />
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/paw_bottom_navigation_height"
+        android:background="@color/paw_surface"
+        app:elevation="8dp"
+        app:itemIconTint="@color/paw_primary"
+        app:itemTextColor="@color/paw_primary"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

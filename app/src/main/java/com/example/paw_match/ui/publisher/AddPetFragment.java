@@ -19,6 +19,7 @@ import com.example.paw_match.R;
 public class AddPetFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final String SELECTED_PHOTO = "selected_photo";
     private ImageView imgPetPreview;
     private Uri imageUri;
 
@@ -28,6 +29,11 @@ public class AddPetFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_pet, container, false);
 
         imgPetPreview = view.findViewById(R.id.imgPetPreview);
+        if (savedInstanceState != null) {
+            String savedPhoto = savedInstanceState.getString(SELECTED_PHOTO);
+            if (savedPhoto != null) imageUri = Uri.parse(savedPhoto);
+        }
+        if (imageUri != null) imgPetPreview.setImageURI(imageUri);
         Button btnSelectPhoto = view.findViewById(R.id.btnSelectPhoto);
         EditText etPetName = view.findViewById(R.id.etPetName);
         EditText etPetAge = view.findViewById(R.id.etPetAge);
@@ -42,9 +48,9 @@ public class AddPetFragment extends Fragment {
             String desc = etPetDescription.getText().toString().trim();
 
             if (name.isEmpty() || age.isEmpty() || desc.isEmpty() || imageUri == null) {
-                Toast.makeText(getContext(), "Completa todos los campos y selecciona una foto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.pet_fields_required, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), "Mascota publicada con éxito", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.pet_published, Toast.LENGTH_SHORT).show();
                 requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
@@ -55,6 +61,12 @@ public class AddPetFragment extends Fragment {
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        if (imageUri != null) outState.putString(SELECTED_PHOTO, imageUri.toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
