@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:paddingTop="56dp"
+    android:clipToPadding="true"
+    android:background="@color/paw_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <com.example.paw_match.ui.shared.BrandBannerView
+            android:id="@+id/imgAuthBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="120dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_paw_huella"
+            android:contentDescription="@string/paw_match_brand"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_login_title"
+            android:textSize="18sp"
+            android:textColor="@color/paw_text_primary"
+            android:layout_marginBottom="32dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_email_hint"
+            android:textColorHint="@color/paw_text_secondary"
+            android:textColor="@color/paw_text_primary"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            android:backgroundTint="@color/paw_primary"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_login_password_hint"
+            android:textColorHint="@color/paw_text_secondary"
+            android:textColor="@color/paw_text_primary"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:saveEnabled="false"
+            android:backgroundTint="@color/paw_primary"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/tvAuthError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:accessibilityLiveRegion="polite"
+            android:textColor="@color/paw_text_error"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_sign_in"
+            android:textColor="@color/paw_on_primary"
+            android:backgroundTint="@color/paw_primary"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnGoToRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_go_to_register"
+            android:textColor="@color/paw_primary"
+            style="?attr/materialButtonOutlinedStyle" />
+
+    </LinearLayout>
+</ScrollView>

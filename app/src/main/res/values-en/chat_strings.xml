@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_title">Chats</string>
+    <string name="chat_list_subtitle">Talk about accepted adoption requests.</string>
+    <string name="chat_empty_title">No chats available yet</string>
+    <string name="chat_empty_body">Once a publisher accepts a request, the chat will appear here for both participants.</string>
+    <string name="chat_conversation_description">Chat with %1$s about %2$s</string>
+    <string name="chat_start">Request accepted. Start the conversation.</string>
+    <string name="chat_pet_context">Adoption of %1$s</string>
+    <string name="chat_message_hint">Type a message</string>
+    <string name="chat_send">Send message</string>
+    <string name="chat_unavailable">Chat is only available to the participants of an accepted request.</string>
+    <string name="chat_message_from_me">You: %1$s</string>
+    <string name="chat_open">Open chat</string>
+</resources>

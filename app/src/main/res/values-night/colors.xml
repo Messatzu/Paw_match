@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Carbón verdoso, petróleo, crema y acentos derivados del verde y coral de PawMatch. -->
+    <color name="paw_background">#121B1D</color>
+    <color name="paw_surface">#1C282B</color>
+    <color name="paw_surface_variant">#26363A</color>
+    <color name="paw_primary">#83D5C5</color>
+    <color name="paw_on_primary">#073B34</color>
+    <color name="paw_header_background">#176B63</color>
+    <color name="paw_on_header">#FFFFFF</color>
+    <color name="paw_text_primary">#F2F5F1</color>
+    <color name="paw_text_secondary">#B7C7C6</color>
+    <color name="paw_border">#879D99</color>
+    <color name="paw_outline_soft">#3A4D4B</color>
+    <color name="paw_accent">#EF8A73</color>
+    <color name="paw_on_accent">#24343D</color>
+    <color name="paw_text_error">#FFB4AB</color>
+    <color name="paw_on_error">#690005</color>
+    <color name="paw_chat_sent">#633E36</color>
+    <color name="paw_snackbar_background">#26363A</color>
+    <color name="paw_ripple">#3383D5C5</color>
+</resources>

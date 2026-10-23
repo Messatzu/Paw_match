@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pet_detail_publisher_title">Offered for adoption by</string>
+    <string name="pet_detail_state_title">Adoption status</string>
+    <string name="pet_detail_available">Available for adoption</string>
+    <string name="pet_detail_available_body">This pet is available for adoption requests.</string>
+    <string name="pet_detail_request_sent">Request sent</string>
+    <string name="pet_detail_pending_adopter">You have already sent a request for this pet. It is awaiting a response. Chat will become available when the publisher accepts it.</string>
+    <string name="pet_detail_pending_publisher">This request is awaiting your response. Accepting it will enable chat with the applicant.</string>
+    <string name="pet_detail_accepted_adopter">Your request was accepted. This adoption has an associated chat with the publisher.</string>
+    <string name="pet_detail_accepted_publisher">You accepted this request. This adoption has an associated chat with the adopter.</string>
+    <string name="pet_detail_rejected">The request was declined. No adoption chat is enabled.</string>
+    <string name="pet_detail_already_adopted">This pet has already been adopted and is no longer accepting requests.</string>
+    <string name="pet_detail_unavailable">These details are no longer available. Return to the previous screen to refresh the list.</string>
+</resources>
