@@ -18,6 +18,7 @@ import com.example.paw_match.data.model.MensajeChat;
 import com.example.paw_match.data.model.UsuarioLocal;
 import com.example.paw_match.data.repository.PawMatchRepository;
 import com.example.paw_match.ui.shared.PawMatchViewModel;
+import com.example.paw_match.ui.shared.PetImages;
 
 /** La misma ficha acompaña a la mascota desde Explorar hasta el historial. */
 public class DetalleMascotaFragment extends Fragment {
@@ -104,24 +105,24 @@ public class DetalleMascotaFragment extends Fragment {
                 : baja ? getString(R.string.history_detail_publication_title)
                 : getString(R.string.pet_detail_title, mascota.getNombre()));
         text(view, R.id.tvHistoryPetName, mascota.getNombre());
-        text(view, R.id.tvHistoryPetSummary, getString(R.string.history_detail_pet_summary,
+        text(view, R.id.tvHistoryPetSummary, mascota.getEspecie().isEmpty() && mascota.getTamano().isEmpty()
+                ? getString(R.string.pet_summary, mascota.getEdad(), mascota.getCiudad())
+                : getString(R.string.history_detail_pet_summary,
                 mascota.getEspecie(), mascota.getEdad(), mascota.getTamano(), mascota.getCiudad()));
         text(view, R.id.tvHistoryPetBirth, getString(R.string.history_detail_labeled_value,
-                getString(R.string.pet_birth), mascota.getNacimiento()));
+                getString(R.string.pet_birth), valorODesconocido(mascota.getNacimiento())));
         text(view, R.id.tvHistoryPetWeight, getString(R.string.history_detail_labeled_value,
-                getString(R.string.pet_weight), mascota.getPeso()));
+                getString(R.string.pet_weight), valorODesconocido(mascota.getPeso())));
         text(view, R.id.tvPetDetailAge, getString(R.string.history_detail_labeled_value,
                 getString(R.string.pet_age), mascota.getEdad()));
         text(view, R.id.tvPetDetailCity, getString(R.string.history_detail_labeled_value,
                 getString(R.string.pet_city), mascota.getCiudad()));
         text(view, R.id.tvPetDetailAbout, getString(R.string.pet_about, mascota.getNombre()));
         text(view, R.id.btnPetDetailRequest, getString(R.string.pet_adopt_action, mascota.getNombre()));
-        text(view, R.id.tvHistoryPetTemperament, mascota.getTemperamento());
+        text(view, R.id.tvHistoryPetTemperament, valorODesconocido(mascota.getTemperamento()));
         text(view, R.id.tvHistoryPetStory, mascota.getHistoria());
         ImageView photo = view.findViewById(R.id.imgHistoryPet);
-        int imageId = getResources().getIdentifier(mascota.getImagenNombre(), "drawable", requireContext().getPackageName());
-        photo.setImageResource(imageId == 0 ? R.drawable.ic_paw_logo : imageId);
-        photo.setScaleType(imageId == 0 ? ImageView.ScaleType.FIT_CENTER : ImageView.ScaleType.CENTER_CROP);
+        PetImages.mostrar(photo, mascota);
         photo.setContentDescription(getString(R.string.profile_history_pet_photo, mascota.getNombre()));
 
         int estado;
@@ -188,6 +189,10 @@ public class DetalleMascotaFragment extends Fragment {
                     ? getString(R.string.chat_message_from_me, ultimo.getTexto()) : ultimo.getTexto();
             text(view, R.id.tvHistoryChatPreview, preview);
         }
+    }
+
+    private String valorODesconocido(String valor) {
+        return valor == null || valor.isEmpty() ? getString(R.string.pet_not_provided) : valor;
     }
 
     private static void text(View view, int id, String value) { ((TextView) view.findViewById(id)).setText(value); }

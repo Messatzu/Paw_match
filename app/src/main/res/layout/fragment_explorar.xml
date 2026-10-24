@@ -81,7 +81,7 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/pm_explorar"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_luna_img"
+                android:src="@drawable/foto_luna"
                 app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.TopRounded" />
 
             <!-- Detalle Mascota -->
@@ -177,6 +177,23 @@
             app:cornerRadius="26dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Button" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_explorar_vacio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/pm_sin_mascotas_explorar"
+        android:textColor="@color/paw_text_secondary"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo_explorar" />
 
     <!-- Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

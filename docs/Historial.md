@@ -111,7 +111,7 @@ Se pidió que el registro permita crear usuarios y conservarlos localmente para 
 - Registro de cierres inesperados después de probar: vacío.
 - La app actualizada quedó instalada en el emulador y abierta en el login.
 
-Para las pruebas de interfaz se crearon las cuentas locales `adoptante.prueba@pawmatch.local` y `publicador.prueba@pawmatch.local`, ambas con contraseña `PawMatch123`. Pueden utilizarse para probar el acceso o crearse cuentas nuevas desde el formulario.
+Para las pruebas de interfaz se crearon las cuentas locales `adoptante.prueba@pawmatch.local` y `publicador.prueba@pawmatch.local`, ambas con contraseña `PawMatch123`. Posteriormente se reemplazaron por los [accesos cortos actuales](#accesos-de-prueba-actuales).
 
 La autenticación con servidor y la conexión al backend siguen pendientes; el registro local ya funciona de manera independiente.
 
@@ -164,3 +164,14 @@ El primer intento de ejecutar `connectedDebugAndroidTest` utilizó una clave de 
 Se volvió a compilar con una copia de la clave de depuración habitual y se instalaron los APK mediante `adb install -r`. Las pruebas instrumentadas se ejecutaron directamente con `am instrument`, evitando la limpieza automática de la aplicación.
 
 Se crearon nuevamente las dos cuentas de prueba documentadas, `adoptante.prueba@pawmatch.local` y `publicador.prueba@pawmatch.local`, con contraseña `PawMatch123`. Cualquier otra cuenta que existiera en ese emulador deberá registrarse otra vez. La app quedó instalada y abierta en Explorar con la cuenta de adoptante.
+
+## Accesos de prueba actuales
+
+| Rol | Correo | Contraseña |
+| --- | --- | --- |
+| Adoptante | `a@pm.test` | `123456` |
+| Publicador | `p@pm.test` | `123456` |
+
+La versión 3 de la base local actualiza los correos y las contraseñas de las dos cuentas de prueba anteriores al abrir la app, conservando sus identificadores, perfiles y sesión. En una instalación nueva crea ambos accesos, sin iniciar una sesión automáticamente. Los demás usuarios conservan sus credenciales.
+
+Las seis mascotas de demostración mantienen sus descripciones originales y tienen fotografías distintas según su especie. Las fuentes están en [FotosDemo.md](FotosDemo.md).

@@ -3,12 +3,15 @@ package com.example.paw_match.data.repository;
 import com.example.paw_match.data.mock.DatosDemo;
 import com.example.paw_match.data.model.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /** Fuente única de datos de la demo. Se usa desde el hilo principal.
@@ -22,7 +25,8 @@ public final class PawMatchRepository {
 
     public interface Listener { void onChanged(); }
     public enum Resultado { OK, DUPLICADA, NO_ENCONTRADA, DATOS_INVALIDOS, YA_RESUELTA, NO_AUTORIZADO }
-    private final List<Mascota> mascotas = DatosDemo.mascotas();
+    private final List<Mascota> mascotas = new ArrayList<>(DatosDemo.mascotas());
+    private final Map<String, UsuarioLocal> cuentasPublicaciones = new HashMap<>();
     private final List<SolicitudAdopcion> solicitudes = new ArrayList<>();
     private final List<HistorialMascota> bajasEnHistorial = new ArrayList<>();
     private final Map<String, UsuarioLocal> cuentasSolicitantes = new HashMap<>();
@@ -38,7 +42,42 @@ public final class PawMatchRepository {
     private void notificar() {
         for (Listener listener : new ArrayList<>(listeners)) listener.onChanged();
     }
-    public List<Mascota> obtenerMascotas() { return mascotas; }
+    public List<Mascota> obtenerMascotas() {
+        return Collections.unmodifiableList(new ArrayList<>(mascotas));
+    }
+    public List<Mascota> obtenerMascotasPublicadas(UsuarioLocal usuario) {
+        if (!cuentaValida(usuario) || !usuario.esPublicador()) return Collections.emptyList();
+        List<Mascota> publicadas = new ArrayList<>();
+        for (Mascota mascota : mascotas)
+            if (esPublicadorDe(mascota, usuario) && !publicacionDadaDeBaja(mascota.getId())
+                    && !mascotaAdoptada(mascota.getId())) publicadas.add(mascota);
+        return Collections.unmodifiableList(publicadas);
+    }
+    public Resultado publicarMascota(String nombre, String edad, String ubicacion,
+                                     String descripcion, String fotoUri, UsuarioLocal cuenta) {
+        if (!cuentaValida(cuenta) || !cuenta.esPublicador()) return Resultado.NO_AUTORIZADO;
+        for (String campo : new String[]{nombre, edad, ubicacion, descripcion, fotoUri})
+            if (campo == null || campo.trim().isEmpty()) return Resultado.DATOS_INVALIDOS;
+        String id = UUID.randomUUID().toString();
+        Mascota mascota = new Mascota(id, nombre.trim(), "", edad.trim(), "", "",
+                descripcion.trim(), "", "publicador-" + cuenta.getId(), "", "", ubicacion.trim(), fotoUri.trim());
+        mascotas.add(0, mascota);
+        cuentasPublicaciones.put(id, cuenta);
+        notificar();
+        return Resultado.OK;
+    }
+    public List<Mascota> obtenerMascotasParaExplorar(UsuarioLocal usuario) {
+        if (!cuentaValida(usuario) || usuario.esPublicador()) return Collections.emptyList();
+        Set<String> solicitadas = new HashSet<>();
+        for (SolicitudAdopcion solicitud : solicitudes)
+            if (mismaCuenta(cuentasSolicitantes.get(solicitud.getId()), usuario))
+                solicitadas.add(solicitud.getMascotaId());
+        List<Mascota> disponibles = new ArrayList<>();
+        for (Mascota mascota : mascotas)
+            if (!solicitadas.contains(mascota.getId()) && !publicacionDadaDeBaja(mascota.getId())
+                    && !mascotaAdoptada(mascota.getId())) disponibles.add(mascota);
+        return Collections.unmodifiableList(disponibles);
+    }
     public Adoptante obtenerAdoptanteDemo() { return DatosDemo.ADOPTANTE; }
     public Refugio obtenerRefugioDemo() { return DatosDemo.REFUGIO; }
     public Mascota buscarMascota(String id) {
@@ -75,14 +114,36 @@ public final class PawMatchRepository {
         return usuario != null && usuario.getId() > 0 && (usuario.esPublicador()
                 || UsuarioLocal.ADOPTANTE.equals(usuario.getRol()));
     }
+    public void actualizarPerfilUsuario(UsuarioLocal usuario) {
+        if (!cuentaValida(usuario)) return;
+        boolean actualizado = false;
+        for (Map<String, UsuarioLocal> cuentas : Arrays.asList(
+                cuentasSolicitantes, cuentasPublicadoras, cuentasPublicaciones)) {
+            for (Map.Entry<String, UsuarioLocal> entrada : cuentas.entrySet()) {
+                if (entrada.getValue() != usuario && mismaCuenta(entrada.getValue(), usuario)) {
+                    entrada.setValue(usuario);
+                    actualizado = true;
+                }
+            }
+        }
+        if (actualizado) {
+            conversaciones.replaceAll((id, chat) -> chat.conPerfilActualizado(usuario));
+            notificar();
+        }
+    }
+    private boolean esPublicadorDe(Mascota mascota, UsuarioLocal usuario) {
+        if (mascota == null || !cuentaValida(usuario) || !usuario.esPublicador()) return false;
+        UsuarioLocal publicador = cuentasPublicaciones.get(mascota.getId());
+        return publicador == null ? mascota.getRefugioId().equals(DatosDemo.REFUGIO.getId())
+                : mismaCuenta(publicador, usuario);
+    }
     private SolicitudAdopcion solicitudVisible(String id, UsuarioLocal usuario) {
         if (!cuentaValida(usuario)) return null;
         for (SolicitudAdopcion solicitud : solicitudes) {
             if (!solicitud.getId().equals(id)) continue;
             if (mismaCuenta(cuentasSolicitantes.get(id), usuario)) return solicitud;
             Mascota mascota = buscarMascota(solicitud.getMascotaId());
-            if (usuario.esPublicador() && mascota != null
-                    && mascota.getRefugioId().equals(DatosDemo.REFUGIO.getId())
+            if (esPublicadorDe(mascota, usuario)
                     && (solicitud.getEstado() == EstadoSolicitud.PENDIENTE
                     || mismaCuenta(cuentasPublicadoras.get(id), usuario))) return solicitud;
         }
@@ -134,7 +195,11 @@ public final class PawMatchRepository {
         } else estado = mascotaAdoptada(mascotaId) ? DetalleMascota.Estado.ADOPTADA : DetalleMascota.Estado.DISPONIBLE;
         String id = solicitud == null ? null : solicitud.getId();
         ConversacionChat chat = estado == DetalleMascota.Estado.APROBADA ? obtenerChat(id, usuario) : null;
-        return new DetalleMascota(mascota, DatosDemo.REFUGIO, cuentasPublicadoras.get(id),
+        UsuarioLocal publicador = cuentasPublicaciones.get(mascotaId);
+        Refugio refugio = publicador == null ? DatosDemo.REFUGIO
+                : new Refugio(mascota.getRefugioId(), publicador.getNombre(), publicador.getEmail());
+        if (publicador == null) publicador = cuentasPublicadoras.get(id);
+        return new DetalleMascota(mascota, refugio, publicador,
                 cuentasSolicitantes.get(id), solicitud, chat, estado,
                 !usuario.esPublicador() && estado == DetalleMascota.Estado.DISPONIBLE,
                 usuario.esPublicador() && estado == DetalleMascota.Estado.PENDIENTE);
@@ -166,13 +231,12 @@ public final class PawMatchRepository {
         if (usuario == null || usuario.getId() <= 0
                 || (!usuario.esPublicador() && !UsuarioLocal.ADOPTANTE.equals(usuario.getRol())))
             return Collections.emptyList();
-        List<HistorialMascota> registros = usuario.esPublicador()
-                ? obtenerHistorialRefugio(DatosDemo.REFUGIO.getId())
-                : obtenerHistorialAdoptante(DatosDemo.ADOPTANTE.getId());
+        List<HistorialMascota> registros = new ArrayList<>(obtenerHistorialAdoptante(DatosDemo.ADOPTANTE.getId()));
+        if (usuario.esPublicador()) registros.addAll(bajasEnHistorial);
         List<HistorialMascota> visibles = new ArrayList<>();
         for (HistorialMascota registro : registros) {
             if (registro.getEstado() == HistorialMascota.Estado.PUBLICACION_DADA_DE_BAJA
-                    && usuario.esPublicador()) visibles.add(registro);
+                    && esPublicadorDe(registro.getMascota(), usuario)) visibles.add(registro);
             else if (obtenerChat(registro.getSolicitudId(), usuario) != null) visibles.add(registro);
         }
         return Collections.unmodifiableList(visibles);
@@ -219,6 +283,23 @@ public final class PawMatchRepository {
         notificar();
         return Resultado.OK;
     }
+    public Resultado cancelarSolicitud(String solicitudId, UsuarioLocal cuenta) {
+        if (!cuentaValida(cuenta) || cuenta.esPublicador()) return Resultado.NO_AUTORIZADO;
+        for (int i = 0; i < solicitudes.size(); i++) {
+            SolicitudAdopcion solicitud = solicitudes.get(i);
+            if (!solicitud.getId().equals(solicitudId)) continue;
+            if (!mismaCuenta(cuentasSolicitantes.get(solicitudId), cuenta)) return Resultado.NO_AUTORIZADO;
+            if (solicitud.getEstado() != EstadoSolicitud.PENDIENTE) return Resultado.YA_RESUELTA;
+            solicitudes.remove(i);
+            cuentasSolicitantes.remove(solicitudId);
+            cuentasPublicadoras.remove(solicitudId);
+            conversaciones.remove(solicitudId);
+            mensajes.remove(solicitudId);
+            notificar();
+            return Resultado.OK;
+        }
+        return Resultado.NO_ENCONTRADA;
+    }
     public Resultado resolverSolicitud(String solicitudId, EstadoSolicitud nuevoEstado) {
         return resolverSolicitudInterna(solicitudId, nuevoEstado, null);
     }
@@ -234,8 +315,7 @@ public final class PawMatchRepository {
             if (!actual.getId().equals(solicitudId)) continue;
             if (actual.getEstado() != EstadoSolicitud.PENDIENTE) return Resultado.YA_RESUELTA;
             Mascota mascota = buscarMascota(actual.getMascotaId());
-            if (cuenta != null && (mascota == null
-                    || !mascota.getRefugioId().equals(DatosDemo.REFUGIO.getId()))) return Resultado.NO_AUTORIZADO;
+            if (cuenta != null && !esPublicadorDe(mascota, cuenta)) return Resultado.NO_AUTORIZADO;
             if (publicacionDadaDeBaja(actual.getMascotaId()) || mascotaAdoptada(actual.getMascotaId()))
                 return Resultado.YA_RESUELTA;
             solicitudes.set(i, new SolicitudAdopcion(actual.getId(), actual.getMascotaId(),
@@ -307,6 +387,9 @@ public final class PawMatchRepository {
         return Resultado.OK;
     }
     public void reiniciarDemo() {
+        mascotas.clear();
+        mascotas.addAll(DatosDemo.mascotas());
+        cuentasPublicaciones.clear();
         solicitudes.clear();
         bajasEnHistorial.clear();
         cuentasSolicitantes.clear();

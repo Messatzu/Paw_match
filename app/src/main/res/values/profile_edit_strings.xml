@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_edit">Editar perfil</string>
+    <string name="profile_name_label">Nombre</string>
+    <string name="profile_location_label">Ubicación</string>
+    <string name="profile_description_label">Descripción</string>
+    <string name="profile_save">Guardar</string>
+    <string name="profile_cancel">Cancelar</string>
+    <string name="profile_saving">Guardando…</string>
+    <string name="profile_updated">Perfil actualizado.</string>
+    <string name="profile_change_photo">Cambiar foto de perfil</string>
+    <string name="profile_photo_hint">Toca la foto para cambiarla</string>
+    <string name="profile_photo_saving">Guardando foto…</string>
+    <string name="profile_photo_error">No se pudo guardar la foto. Selecciona otra imagen.</string>
+</resources>

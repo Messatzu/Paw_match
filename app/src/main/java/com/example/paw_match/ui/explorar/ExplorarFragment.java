@@ -17,6 +17,7 @@ import com.example.paw_match.data.model.Mascota;
 import com.example.paw_match.data.repository.PawMatchRepository;
 import com.example.paw_match.ui.detalle.DetalleMascotaFragment;
 import com.example.paw_match.ui.shared.PawMatchViewModel;
+import com.example.paw_match.ui.shared.PetImages;
 
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class ExplorarFragment extends Fragment {
             indiceActual = savedInstanceState.getInt(INDICE_MASCOTA);
         }
 
-        actualizarVistaMascota(view);
+        viewModel.observarMascotas().observe(getViewLifecycleOwner(),
+                ignored -> actualizarVistaMascota(view));
 
         View.OnClickListener abrirDetalle = v -> abrirDetalleMascota();
         view.findViewById(R.id.card_mascota).setOnClickListener(abrirDetalle);
@@ -48,7 +50,7 @@ public class ExplorarFragment extends Fragment {
         view.findViewById(R.id.btn_ver_detalles).setOnClickListener(abrirDetalle);
 
         view.findViewById(R.id.btn_pasar).setOnClickListener(v -> {
-            List<Mascota> mascotas = viewModel.obtenerMascotas();
+            List<Mascota> mascotas = viewModel.obtenerMascotasParaExplorar();
             if (!mascotas.isEmpty()) {
                 indiceActual = (indiceActual + 1) % mascotas.size();
                 actualizarVistaMascota(view);
@@ -56,7 +58,7 @@ public class ExplorarFragment extends Fragment {
         });
 
         view.findViewById(R.id.btn_me_interesa).setOnClickListener(v -> {
-            List<Mascota> mascotas = viewModel.obtenerMascotas();
+            List<Mascota> mascotas = viewModel.obtenerMascotasParaExplorar();
             if (mascotas.isEmpty()) return;
 
             Mascota mascota = mascotas.get(indiceActual % mascotas.size());
@@ -74,7 +76,6 @@ public class ExplorarFragment extends Fragment {
                     break;
             }
             Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
-            indiceActual = (indiceActual + 1) % mascotas.size();
             actualizarVistaMascota(view);
         });
 
@@ -89,7 +90,7 @@ public class ExplorarFragment extends Fragment {
     }
 
     private void abrirDetalleMascota() {
-        List<Mascota> mascotas = viewModel.obtenerMascotas();
+        List<Mascota> mascotas = viewModel.obtenerMascotasParaExplorar();
         if (mascotas.isEmpty()) return;
 
         Mascota mascota = mascotas.get(indiceActual % mascotas.size());
@@ -101,10 +102,18 @@ public class ExplorarFragment extends Fragment {
     }
 
     private void actualizarVistaMascota(View view) {
-        List<Mascota> mascotas = viewModel.obtenerMascotas();
-        if (mascotas.isEmpty()) return;
+        List<Mascota> mascotas = viewModel.obtenerMascotasParaExplorar();
+        boolean vacio = mascotas.isEmpty();
+        view.findViewById(R.id.card_mascota).setVisibility(vacio ? View.GONE : View.VISIBLE);
+        view.findViewById(R.id.layout_botones_accion).setVisibility(vacio ? View.GONE : View.VISIBLE);
+        view.findViewById(R.id.tv_explorar_vacio).setVisibility(vacio ? View.VISIBLE : View.GONE);
+        if (vacio) {
+            indiceActual = 0;
+            return;
+        }
 
-        Mascota mascota = mascotas.get(indiceActual % mascotas.size());
+        indiceActual %= mascotas.size();
+        Mascota mascota = mascotas.get(indiceActual);
         TextView nombre = view.findViewById(R.id.tv_nombre_mascota);
         TextView detalles = view.findViewById(R.id.tv_detalles_mascota);
         ImageView imagen = view.findViewById(R.id.img_mascota);
@@ -112,12 +121,6 @@ public class ExplorarFragment extends Fragment {
         nombre.setText(mascota.getNombre());
         detalles.setText(getString(R.string.pet_summary, mascota.getEdad(), mascota.getCiudad()));
 
-        int imagenId = 0;
-        String imagenNombre = mascota.getImagenNombre();
-        if (imagenNombre != null && !imagenNombre.isEmpty()) {
-            imagenId = getResources().getIdentifier(
-                    imagenNombre, "drawable", requireContext().getPackageName());
-        }
-        imagen.setImageResource(imagenId != 0 ? imagenId : R.drawable.ic_luna_img);
+        PetImages.mostrar(imagen, mascota);
     }
 }

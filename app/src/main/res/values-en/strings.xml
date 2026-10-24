@@ -38,7 +38,18 @@
     <string name="pet_add_title">Publish a New Pet</string>
     <string name="pet_select_photo">Select Photo</string>
     <string name="pet_name_hint">Pet name</string>
-    <string name="pet_age_location_hint">Age and location (e.g. 2 years • Santa Fe)</string>
+    <string name="pet_age_hint">Age (e.g. 2 years or 8 months)</string>
+    <string name="pet_location_hint">Location (e.g. Santa Fe)</string>
+    <string name="pet_publications_title">Published pets</string>
+    <string name="pet_no_publications_title">No published pets</string>
+    <string name="pet_no_publications">Pets you publish will appear here. Tap + to add one.</string>
+    <string name="pet_publication_status">Published</string>
+    <plurals name="pet_publications_count">
+        <item quantity="one">%d published pet</item>
+        <item quantity="other">%d published pets</item>
+    </plurals>
+    <string name="pet_not_provided">Not provided</string>
+    <string name="pet_photo_unavailable">Unable to open this photo. Select another one.</string>
     <string name="pet_description_hint">Description and details...</string>
     <string name="pet_publish">Publish Pet</string>
     <string name="pet_fields_required">Complete all fields and select a photo</string>

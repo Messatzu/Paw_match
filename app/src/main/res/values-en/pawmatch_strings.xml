@@ -6,6 +6,7 @@
     <string name="pm_perfil">Profile</string>
     <string name="pm_pasar">Skip</string>
     <string name="pm_me_interesa">Interested</string>
+    <string name="pm_sin_mascotas_explorar">There are no more pets to explore. You can check your requests in Requests.</string>
     <string name="pm_pendiente">Pending</string>
     <string name="pm_aprobada">Approved</string>
     <string name="pm_rechazada">Rejected</string>
@@ -29,6 +30,10 @@
     <string name="pm_request_reject_for">Reject %1$s’s request for %2$s</string>
     <string name="pm_request_accepted">Request accepted.</string>
     <string name="pm_request_rejected">Request rejected.</string>
+    <string name="pm_request_cancel">Cancel request</string>
+    <string name="pm_request_cancel_for">Cancel request for %1$s</string>
+    <string name="pm_request_cancelled">Request cancelled.</string>
+    <string name="pm_request_cancel_resolved">Only pending requests can be cancelled.</string>
     <plurals name="pm_pending_requests_count">
         <item quantity="one">%d request awaiting a response</item>
         <item quantity="other">%d requests awaiting a response</item>

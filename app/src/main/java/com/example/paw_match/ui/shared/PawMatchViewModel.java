@@ -10,10 +10,12 @@ import java.util.List;
 public class PawMatchViewModel extends ViewModel {
     private final PawMatchRepository repository = PawMatchRepository.getInstance();
     private final MutableLiveData<List<SolicitudAdopcion>> solicitudes = new MutableLiveData<>();
+    private final MutableLiveData<List<Mascota>> mascotas = new MutableLiveData<>();
     private final MutableLiveData<Boolean> modoRefugio = new MutableLiveData<>(false);
     private final MutableLiveData<List<ConversacionChat>> chats = new MutableLiveData<>();
     private UsuarioLocal usuarioActual;
     private final PawMatchRepository.Listener listener = () -> {
+        mascotas.setValue(repository.obtenerMascotas());
         solicitudes.setValue(repository.obtenerSolicitudes());
         chats.setValue(repository.obtenerChats(usuarioActual));
     };
@@ -22,14 +24,17 @@ public class PawMatchViewModel extends ViewModel {
         listener.onChanged();
     }
     public LiveData<List<SolicitudAdopcion>> observarSolicitudes() { return solicitudes; }
+    public LiveData<List<Mascota>> observarMascotas() { return mascotas; }
     public LiveData<Boolean> observarModoRefugio() { return modoRefugio; }
     public LiveData<List<ConversacionChat>> observarChats() { return chats; }
     public UsuarioLocal obtenerUsuarioActual() { return usuarioActual; }
     public void definirUsuarioActual(UsuarioLocal usuario) {
         usuarioActual = usuario;
+        repository.actualizarPerfilUsuario(usuario);
         definirModoRefugio(usuario != null && usuario.esPublicador());
         chats.setValue(repository.obtenerChats(usuario));
         solicitudes.setValue(repository.obtenerSolicitudes());
+        mascotas.setValue(repository.obtenerMascotas());
     }
     public boolean esModoRefugio() { return Boolean.TRUE.equals(modoRefugio.getValue()); }
     public void definirModoRefugio(boolean refugio) {
@@ -45,6 +50,16 @@ public class PawMatchViewModel extends ViewModel {
         return repository.obtenerDetalleMascota(mascotaId, solicitudId, usuarioActual);
     }
     public List<Mascota> obtenerMascotas() { return repository.obtenerMascotas(); }
+    public List<Mascota> obtenerMascotasPublicadas() {
+        return repository.obtenerMascotasPublicadas(usuarioActual);
+    }
+    public PawMatchRepository.Resultado publicarMascota(String nombre, String edad, String ubicacion,
+                                                       String descripcion, String fotoUri) {
+        return repository.publicarMascota(nombre, edad, ubicacion, descripcion, fotoUri, usuarioActual);
+    }
+    public List<Mascota> obtenerMascotasParaExplorar() {
+        return repository.obtenerMascotasParaExplorar(usuarioActual);
+    }
     public List<HistorialMascota> obtenerHistorialPerfil() {
         return repository.obtenerHistorialPerfil(usuarioActual);
     }
@@ -57,6 +72,10 @@ public class PawMatchViewModel extends ViewModel {
     public PawMatchRepository.Resultado crearSolicitud(String mascotaId) {
         if (esModoRefugio()) return PawMatchRepository.Resultado.DATOS_INVALIDOS;
         return repository.crearSolicitud(mascotaId, obtenerAdoptanteDemo().getId(), usuarioActual);
+    }
+    public PawMatchRepository.Resultado cancelarSolicitud(String solicitudId) {
+        if (esModoRefugio()) return PawMatchRepository.Resultado.NO_AUTORIZADO;
+        return repository.cancelarSolicitud(solicitudId, usuarioActual);
     }
     public PawMatchRepository.Resultado resolverSolicitud(String id, EstadoSolicitud estado) {
         if (!esModoRefugio()) return PawMatchRepository.Resultado.DATOS_INVALIDOS;

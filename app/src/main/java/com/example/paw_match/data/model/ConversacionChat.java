@@ -35,4 +35,11 @@ public final class ConversacionChat {
     public ConversacionChat conUltimoMensaje(MensajeChat mensaje) {
         return new ConversacionChat(solicitudId, mascota, adoptante, publicador, mensaje);
     }
+
+    public ConversacionChat conPerfilActualizado(UsuarioLocal usuario) {
+        if (!incluye(usuario)) return this;
+        return new ConversacionChat(solicitudId, mascota,
+                usuario.esPublicador() ? adoptante : usuario,
+                usuario.esPublicador() ? usuario : publicador, ultimoMensaje);
+    }
 }

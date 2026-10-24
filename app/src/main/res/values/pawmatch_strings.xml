@@ -6,6 +6,7 @@
     <string name="pm_perfil">Perfil</string>
     <string name="pm_pasar">Pasar</string>
     <string name="pm_me_interesa">Me interesa</string>
+    <string name="pm_sin_mascotas_explorar">No hay más mascotas para explorar. Puedes consultar tus solicitudes en Solicitudes.</string>
     <string name="pm_pendiente">Pendiente</string>
     <string name="pm_aprobada">Aprobada</string>
     <string name="pm_rechazada">Rechazada</string>
@@ -29,6 +30,10 @@
     <string name="pm_request_reject_for">Rechazar solicitud de %1$s para %2$s</string>
     <string name="pm_request_accepted">Solicitud aceptada.</string>
     <string name="pm_request_rejected">Solicitud rechazada.</string>
+    <string name="pm_request_cancel">Cancelar solicitud</string>
+    <string name="pm_request_cancel_for">Cancelar solicitud para %1$s</string>
+    <string name="pm_request_cancelled">Solicitud cancelada.</string>
+    <string name="pm_request_cancel_resolved">Solo puedes cancelar solicitudes pendientes.</string>
     <plurals name="pm_pending_requests_count">
         <item quantity="one">%d solicitud pendiente de respuesta</item>
         <item quantity="other">%d solicitudes pendientes de respuesta</item>

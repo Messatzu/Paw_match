@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.paw_match.R;
 import com.example.paw_match.data.model.HistorialMascota;
 import com.example.paw_match.data.model.Mascota;
+import com.example.paw_match.ui.shared.PetImages;
 import java.util.Objects;
 
 public class AdoptedPetAdapter extends ListAdapter<HistorialMascota, AdoptedPetAdapter.ViewHolder> {
@@ -52,11 +53,7 @@ public class AdoptedPetAdapter extends ListAdapter<HistorialMascota, AdoptedPetA
         boolean adoptada = registro.getEstado() == HistorialMascota.Estado.ADOPTADA;
         holder.tvStatus.setText(adoptada ? R.string.profile_history_adopted : R.string.profile_history_withdrawn);
         holder.tvStatus.setTextColor(context.getColor(adoptada ? R.color.paw_primary : R.color.paw_text_primary));
-        int imageId = context.getResources().getIdentifier(mascota.getImagenNombre(), "drawable", context.getPackageName());
-        holder.imgPet.setImageResource(imageId == 0 ? R.drawable.ic_paw_logo : imageId);
-        holder.imgPet.setScaleType(imageId == 0 ? ImageView.ScaleType.FIT_CENTER : ImageView.ScaleType.CENTER_CROP);
-        int padding = imageId == 0 ? Math.round(8 * context.getResources().getDisplayMetrics().density) : 0;
-        holder.imgPet.setPadding(padding, padding, padding, padding);
+        PetImages.mostrar(holder.imgPet, mascota);
         holder.imgPet.setContentDescription(context.getString(R.string.profile_history_pet_photo, mascota.getNombre()));
         holder.itemView.setOnClickListener(v -> abrirDetalle.abrir(registro));
     }

@@ -1,6 +1,7 @@
 package com.example.paw_match.ui.auth;
 
 import android.app.Application;
+import android.net.Uri;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -15,17 +16,25 @@ import java.util.function.Supplier;
 
 /** Comparte la sesión entre pantallas y conserva las operaciones al girar el dispositivo. */
 public final class LocalAuthViewModel extends AndroidViewModel {
+    public enum Operacion { NINGUNA, AUTENTICACION, CERRAR_SESION, ACTUALIZAR_PERFIL, ACTUALIZAR_FOTO }
+
     public static final class Estado {
         public final boolean cargando;
         public final boolean inicializado;
         public final UsuarioLocal usuario;
         public final int error;
+        public final Operacion operacion;
 
         private Estado(boolean cargando, boolean inicializado, UsuarioLocal usuario, int error) {
+            this(cargando, inicializado, usuario, error, Operacion.NINGUNA);
+        }
+
+        private Estado(boolean cargando, boolean inicializado, UsuarioLocal usuario, int error, Operacion operacion) {
             this.cargando = cargando;
             this.inicializado = inicializado;
             this.usuario = usuario;
             this.error = error;
+            this.operacion = operacion;
         }
     }
 
@@ -60,32 +69,51 @@ public final class LocalAuthViewModel extends AndroidViewModel {
     }
 
     public void cerrarSesion() {
-        ejecutar(() -> {
+        ejecutar(Operacion.CERRAR_SESION, () -> {
             repository.cerrarSesion();
             return new Estado(false, true, null, 0);
         });
     }
 
+    public void actualizarPerfil(String nombre, String ubicacion, String descripcion) {
+        ejecutar(Operacion.ACTUALIZAR_PERFIL, () -> new Estado(false, true,
+                repository.actualizarPerfil(nombre, ubicacion, descripcion), 0));
+    }
+
+    public void actualizarFotoPerfil(Uri foto) {
+        ejecutar(Operacion.ACTUALIZAR_FOTO, () -> new Estado(false, true,
+                repository.actualizarFotoPerfil(foto), 0));
+    }
+
     public void limpiarError() {
         Estado actual = estado.getValue();
         if (actual != null && actual.error != 0) {
-            estado.setValue(new Estado(actual.cargando, actual.inicializado, actual.usuario, 0));
+            estado.setValue(new Estado(actual.cargando, actual.inicializado, actual.usuario, 0, actual.operacion));
         }
     }
 
     private void ejecutar(Supplier<Estado> operacion) {
+        ejecutar(Operacion.AUTENTICACION, operacion);
+    }
+
+    private void ejecutar(Operacion tipo, Supplier<Estado> operacion) {
         Estado actual = estado.getValue();
         if (actual == null || actual.cargando) return;
-        estado.setValue(new Estado(true, true, actual.usuario, 0));
-        executor.execute(() -> publicar(operacion, actual.usuario));
+        estado.setValue(new Estado(true, true, actual.usuario, 0, tipo));
+        executor.execute(() -> publicar(operacion, actual.usuario,
+                tipo == Operacion.ACTUALIZAR_FOTO ? R.string.profile_photo_error : R.string.auth_storage_error));
     }
 
     private void publicar(Supplier<Estado> operacion, UsuarioLocal usuarioAnterior) {
+        publicar(operacion, usuarioAnterior, R.string.auth_storage_error);
+    }
+
+    private void publicar(Supplier<Estado> operacion, UsuarioLocal usuarioAnterior, int error) {
         try {
             estado.postValue(operacion.get());
         } catch (RuntimeException exception) {
             Log.e("LocalAuth", "No se pudo completar la operación local", exception);
-            estado.postValue(new Estado(false, true, usuarioAnterior, R.string.auth_storage_error));
+            estado.postValue(new Estado(false, true, usuarioAnterior, error));
         }
     }
 

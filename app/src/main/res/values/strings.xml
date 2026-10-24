@@ -38,7 +38,18 @@
     <string name="pet_add_title">Publicar Nueva Mascota</string>
     <string name="pet_select_photo">Seleccionar Foto</string>
     <string name="pet_name_hint">Nombre de la mascota</string>
-    <string name="pet_age_location_hint">Edad y Ubicación (ej. 2 años • Santa Fe)</string>
+    <string name="pet_age_hint">Edad (ej. 2 años o 8 meses)</string>
+    <string name="pet_location_hint">Ubicación (ej. Santa Fe)</string>
+    <string name="pet_publications_title">Mascotas publicadas</string>
+    <string name="pet_no_publications_title">No hay mascotas publicadas</string>
+    <string name="pet_no_publications">Las mascotas que publiques aparecerán aquí. Toca + para agregar una.</string>
+    <string name="pet_publication_status">Publicada</string>
+    <plurals name="pet_publications_count">
+        <item quantity="one">%d mascota publicada</item>
+        <item quantity="other">%d mascotas publicadas</item>
+    </plurals>
+    <string name="pet_not_provided">No informado</string>
+    <string name="pet_photo_unavailable">No se puede abrir la foto. Selecciona otra.</string>
     <string name="pet_description_hint">Descripción y detalles...</string>
     <string name="pet_publish">Publicar Mascota</string>
     <string name="pet_fields_required">Completa todos los campos y selecciona una foto</string>

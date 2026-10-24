@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.android.material.snackbar.Snackbar;
 
-/** Cola de respuestas del publicador; el adoptante puede consultar sus solicitudes sin resolverlas. */
+/** Cola del publicador; el adoptante puede consultar sus solicitudes y cancelar las pendientes. */
 public class PublisherRequestsFragment extends Fragment {
     public PublisherRequestsFragment() { super(R.layout.fragment_publisher_requests); }
 
@@ -57,6 +57,12 @@ public class PublisherRequestsFragment extends Fragment {
                     .replace(getId(), DetalleMascotaFragment.desdeSolicitud(
                             solicitud.getMascotaId(), solicitud.getId()))
                     .addToBackStack("detalle_solicitud").commit();
+        }, solicitud -> {
+            PawMatchRepository.Resultado resultado = vm.cancelarSolicitud(solicitud.getId());
+            int mensaje = resultado == PawMatchRepository.Resultado.OK ? R.string.pm_request_cancelled
+                    : resultado == PawMatchRepository.Resultado.YA_RESUELTA
+                    ? R.string.pm_request_cancel_resolved : R.string.pm_error;
+            Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
         });
         RecyclerView recycler = view.findViewById(R.id.recyclerRequests);
         recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -75,7 +81,7 @@ public class PublisherRequestsFragment extends Fragment {
                 Mascota mascota = vm.buscarMascota(solicitud.getMascotaId());
                 UsuarioLocal cuenta = vm.obtenerSolicitante(solicitud.getId());
                 Adoptante adoptante = cuenta == null ? vm.obtenerAdoptanteDemo()
-                        : new Adoptante(Long.toString(cuenta.getId()), cuenta.getNombre(), cuenta.getUbicacion(), "");
+                        : new Adoptante(Long.toString(cuenta.getId()), cuenta.getNombre(), cuenta.getUbicacion(), cuenta.getDescripcion());
                 if (mascota != null) items.add(new AdoptionRequestAdapter.Item(solicitud,
                         mascota, adoptante));
             }
