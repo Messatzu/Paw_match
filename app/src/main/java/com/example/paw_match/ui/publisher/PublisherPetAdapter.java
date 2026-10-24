@@ -3,6 +3,7 @@ package com.example.paw_match.ui.publisher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -15,9 +16,11 @@ import com.example.paw_match.ui.shared.PetImages;
 
 public class PublisherPetAdapter extends ListAdapter<Mascota, PublisherPetAdapter.PetViewHolder> {
     public interface DetailListener { void onDetail(Mascota mascota); }
+    public interface DeleteListener { void onDelete(Mascota mascota); }
     private final DetailListener detailListener;
+    private final DeleteListener deleteListener;
 
-    public PublisherPetAdapter(DetailListener detailListener) {
+    public PublisherPetAdapter(DetailListener detailListener, DeleteListener deleteListener) {
         super(new DiffUtil.ItemCallback<Mascota>() {
             @Override public boolean areItemsTheSame(@NonNull Mascota anterior, @NonNull Mascota nueva) {
                 return anterior.getId().equals(nueva.getId());
@@ -27,6 +30,7 @@ public class PublisherPetAdapter extends ListAdapter<Mascota, PublisherPetAdapte
             }
         });
         this.detailListener = detailListener;
+        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -47,15 +51,21 @@ public class PublisherPetAdapter extends ListAdapter<Mascota, PublisherPetAdapte
         holder.foto.setContentDescription(holder.itemView.getContext().getString(
                 R.string.profile_history_pet_photo, mascota.getNombre()));
         holder.itemView.setOnClickListener(v -> detailListener.onDetail(mascota));
+        holder.eliminar.setContentDescription(holder.itemView.getContext().getString(
+                R.string.pet_delete_publication_for, mascota.getNombre()));
+        holder.eliminar.setTooltipText(holder.eliminar.getContentDescription());
+        holder.eliminar.setOnClickListener(v -> deleteListener.onDelete(mascota));
     }
 
     static class PetViewHolder extends RecyclerView.ViewHolder {
         final ImageView foto;
+        final ImageButton eliminar;
         final TextView nombre, detalles, tituloDescripcion, descripcion;
 
         PetViewHolder(@NonNull View view) {
             super(view);
             foto = view.findViewById(R.id.imgPetItem);
+            eliminar = view.findViewById(R.id.btnDeletePublication);
             nombre = view.findViewById(R.id.tvPetNameItem);
             detalles = view.findViewById(R.id.tvPetDetailsItem);
             tituloDescripcion = view.findViewById(R.id.tvPetDescriptionTitle);

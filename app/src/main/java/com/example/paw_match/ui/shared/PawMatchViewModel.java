@@ -57,6 +57,10 @@ public class PawMatchViewModel extends ViewModel {
                                                        String descripcion, String fotoUri) {
         return repository.publicarMascota(nombre, edad, ubicacion, descripcion, fotoUri, usuarioActual);
     }
+    public PawMatchRepository.Resultado eliminarPublicacion(String mascotaId) {
+        if (!esModoRefugio()) return PawMatchRepository.Resultado.NO_AUTORIZADO;
+        return repository.eliminarPublicacion(mascotaId, usuarioActual);
+    }
     public List<Mascota> obtenerMascotasParaExplorar() {
         return repository.obtenerMascotasParaExplorar(usuarioActual);
     }

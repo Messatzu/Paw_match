@@ -3,6 +3,7 @@ package com.example.paw_match.ui.publisher;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.paw_match.R;
 import com.example.paw_match.MainActivity;
 import com.example.paw_match.data.model.Mascota;
+import com.example.paw_match.data.repository.PawMatchRepository;
 import com.example.paw_match.ui.detalle.DetalleMascotaFragment;
 import com.example.paw_match.ui.shared.PawMatchViewModel;
 import java.util.List;
@@ -31,6 +33,13 @@ public class PublisherPetsFragment extends Fragment {
             getParentFragmentManager().beginTransaction().setReorderingAllowed(true)
                     .replace(getId(), DetalleMascotaFragment.newInstance(mascota.getId()))
                     .addToBackStack("detalle_publicacion").commit();
+        }, mascota -> {
+            PawMatchRepository.Resultado resultado = vm.eliminarPublicacion(mascota.getId());
+            int mensaje = resultado == PawMatchRepository.Resultado.OK ? R.string.pet_publication_deleted
+                    : resultado == PawMatchRepository.Resultado.DUPLICADA
+                    || resultado == PawMatchRepository.Resultado.YA_RESUELTA
+                    ? R.string.pet_publication_already_resolved : R.string.pm_error;
+            Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
         });
         RecyclerView mascotas = view.findViewById(R.id.recyclerPublishedPets);
         mascotas.setLayoutManager(new LinearLayoutManager(requireContext()));

@@ -247,6 +247,27 @@ public final class PawMatchRepository {
                     && Objects.equals(registro.getSolicitudId(), solicitudId)) return registro;
         return null;
     }
+    public Resultado eliminarPublicacion(String mascotaId, UsuarioLocal cuenta) {
+        if (!cuentaValida(cuenta) || !cuenta.esPublicador()) return Resultado.NO_AUTORIZADO;
+        Mascota mascota = buscarMascota(mascotaId);
+        if (mascota == null) return Resultado.NO_ENCONTRADA;
+        if (!esPublicadorDe(mascota, cuenta)) return Resultado.NO_AUTORIZADO;
+        if (publicacionDadaDeBaja(mascotaId)) return Resultado.DUPLICADA;
+        if (mascotaAdoptada(mascotaId)) return Resultado.YA_RESUELTA;
+        bajasEnHistorial.add(new HistorialMascota(mascota, HistorialMascota.Estado.PUBLICACION_DADA_DE_BAJA));
+        cuentasPublicaciones.put(mascotaId, cuenta);
+        for (int i = 0; i < solicitudes.size(); i++) {
+            SolicitudAdopcion solicitud = solicitudes.get(i);
+            if (solicitud.getMascotaId().equals(mascotaId) && solicitud.getEstado() == EstadoSolicitud.PENDIENTE) {
+                solicitudes.set(i, new SolicitudAdopcion(solicitud.getId(), solicitud.getMascotaId(),
+                        solicitud.getAdoptanteId(), EstadoSolicitud.RECHAZADA));
+                cuentasPublicadoras.put(solicitud.getId(), cuenta);
+            }
+        }
+        notificar();
+        return Resultado.OK;
+    }
+
     /** Registra una baja ya realizada para mostrarla en el perfil; no ejecuta la baja de la publicación. */
     public Resultado registrarBajaEnHistorial(String mascotaId, String refugioId) {
         Mascota mascota = buscarMascota(mascotaId);

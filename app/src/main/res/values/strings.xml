@@ -44,6 +44,10 @@
     <string name="pet_no_publications_title">No hay mascotas publicadas</string>
     <string name="pet_no_publications">Las mascotas que publiques aparecerán aquí. Toca + para agregar una.</string>
     <string name="pet_publication_status">Publicada</string>
+    <string name="pet_delete_publication">Eliminar publicación</string>
+    <string name="pet_delete_publication_for">Eliminar publicación de %1$s</string>
+    <string name="pet_publication_deleted">Publicación eliminada.</string>
+    <string name="pet_publication_already_resolved">La publicación ya no está disponible para eliminar.</string>
     <plurals name="pet_publications_count">
         <item quantity="one">%d mascota publicada</item>
         <item quantity="other">%d mascotas publicadas</item>

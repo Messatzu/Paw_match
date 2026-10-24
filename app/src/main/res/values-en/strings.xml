@@ -44,6 +44,10 @@
     <string name="pet_no_publications_title">No published pets</string>
     <string name="pet_no_publications">Pets you publish will appear here. Tap + to add one.</string>
     <string name="pet_publication_status">Published</string>
+    <string name="pet_delete_publication">Delete publication</string>
+    <string name="pet_delete_publication_for">Delete publication for %1$s</string>
+    <string name="pet_publication_deleted">Publication deleted.</string>
+    <string name="pet_publication_already_resolved">This publication is no longer available to delete.</string>
     <plurals name="pet_publications_count">
         <item quantity="one">%d published pet</item>
         <item quantity="other">%d published pets</item>

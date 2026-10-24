@@ -64,6 +64,17 @@
                     android:textColor="@color/paw_primary"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnDeletePublication"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/pet_delete_publication"
+                    android:padding="12dp"
+                    app:srcCompat="@drawable/ic_delete_request"
+                    app:tint="@color/paw_text_error" />
             </LinearLayout>
 
             <TextView
