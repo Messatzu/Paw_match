@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/paw_background">
+
+    <LinearLayout
+        android:id="@+id/chatHeader"
+        android:layout_width="0dp" android:layout_height="wrap_content" android:minHeight="72dp"
+        android:paddingEnd="72dp" android:paddingStart="4dp" android:paddingVertical="10dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/paw_header_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <ImageButton
+            android:id="@+id/btnChatBack"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:padding="12dp" android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back" app:tint="@color/paw_on_header"
+            android:contentDescription="@string/pet_back" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgChatHeaderAvatar"
+            android:layout_width="44dp" android:layout_height="44dp" android:layout_marginEnd="12dp"
+            android:background="@color/paw_surface_variant" android:scaleType="centerCrop"
+            android:importantForAccessibility="no"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.ChatAvatar"
+            tools:src="@drawable/mascota_luna" />
+        <LinearLayout
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvChatHeaderName"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:maxLines="1" android:ellipsize="end" android:text="@string/chat_title"
+                android:textSize="18sp" android:textStyle="bold" android:textColor="@color/paw_on_header" />
+            <TextView
+                android:id="@+id/tvChatHeaderPet"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="3dp" android:maxLines="1" android:ellipsize="end"
+                android:textSize="13sp" android:textColor="@color/paw_on_header" tools:text="Luna" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvChatIntro"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_margin="24dp" android:padding="12dp" android:gravity="center"
+        android:background="@drawable/bg_chat_input" android:text="@string/chat_start"
+        android:textSize="13sp" android:textColor="@color/paw_primary"
+        android:accessibilityLiveRegion="polite"
+        app:layout_constraintTop_toBottomOf="@id/chatHeader"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChatMessages"
+        android:layout_width="0dp" android:layout_height="0dp"
+        android:padding="12dp" android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/tvChatIntro"
+        app:layout_constraintBottom_toTopOf="@id/chatComposer"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_chat_message" />
+
+    <LinearLayout
+        android:id="@+id/chatComposer"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="bottom" android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <EditText
+            android:id="@+id/etChatMessage"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:minHeight="48dp" android:maxHeight="128dp" android:maxLines="4"
+            android:layout_marginEnd="8dp" android:paddingHorizontal="16dp" android:paddingVertical="12dp"
+            android:background="@drawable/bg_chat_input" android:hint="@string/chat_message_hint"
+            android:textSize="16sp" android:textColor="@color/paw_text_primary" android:textColorHint="@color/paw_text_secondary"
+            android:inputType="textCapSentences|textMultiLine" android:imeOptions="actionSend"
+            android:importantForAutofill="no" />
+        <ImageButton
+            android:id="@+id/btnSendMessage"
+            android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp"
+            android:background="@drawable/bg_circle_green" android:src="@drawable/ic_chat_send"
+            android:enabled="false" android:contentDescription="@string/chat_send" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

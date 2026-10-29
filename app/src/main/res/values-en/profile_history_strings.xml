@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_adoption_history_title">Adoption history</string>
+    <string name="profile_publication_history_title">Publication history</string>
+    <string name="profile_publication_history_empty">No adopted pets or withdrawn publications yet.</string>
+    <string name="profile_history_adopted">Adopted</string>
+    <string name="profile_history_withdrawn">Publication withdrawn</string>
+    <string name="profile_history_pet_details">%1$s • %2$s</string>
+    <string name="profile_history_pet_photo">Photo of %1$s</string>
+    <string name="history_detail_adoption_title">Adoption details</string>
+    <string name="history_detail_publication_title">Publication details</string>
+    <string name="history_detail_adopter_title">Adopter</string>
+    <string name="history_detail_chat_title">Adoption chat</string>
+    <string name="history_detail_pet_title">Pet information</string>
+    <string name="history_detail_pet_summary">%1$s • %2$s • %3$s • %4$s</string>
+    <string name="history_detail_labeled_value">%1$s: %2$s</string>
+    <string name="history_detail_no_adopter">This publication was withdrawn without an adoption.</string>
+    <string name="history_detail_adopter_unavailable">Adopter information is unavailable.</string>
+    <string name="history_detail_no_chat">This publication has no associated adoption chat.</string>
+</resources>

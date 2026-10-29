@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paw_background">
+
+    <!-- Top Header Logo -->
+    <LinearLayout
+        android:id="@+id/header_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.paw_match.ui.shared.BrandBannerView
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:contentDescription="@string/pm_app_name"
+            android:src="@drawable/ic_paw_huella" />
+
+    </LinearLayout>
+
+    <!-- Header Title "Explorar" -->
+    <TextView
+        android:id="@+id/tv_titulo_explorar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/pm_explorar"
+        android:textColor="@color/paw_text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_logo" />
+
+    <!-- Card Principal Mascota con Bordes Redondeados (24dp) y Borde Visible (2dp) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_mascota"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/paw_surface"
+        app:rippleColor="@color/paw_accent"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toTopOf="@id/layout_botones_accion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo_explorar"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Card"
+        app:strokeColor="@color/paw_border"
+        app:strokeWidth="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Imagen Mascota con Esquinas Superiores Redondeadas -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_mascota"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/pm_explorar"
+                android:scaleType="centerCrop"
+                android:src="@drawable/foto_luna"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.TopRounded" />
+
+            <!-- Detalle Mascota -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Nombre de Mascota y Botón Circular (+) en Verde con + Blanco -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_nombre_mascota"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Luna"
+                        android:textColor="@color/paw_text_primary"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <!-- Botón (+) Circular Verde con icono (+) Blanco Claramente Visible -->
+                    <ImageButton
+                        android:id="@+id/btn_ver_detalles"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_circle_green"
+                        android:contentDescription="@string/pet_view_details"
+                        android:elevation="3dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_add_plus"
+                        app:tint="@color/paw_on_primary" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_detalles_mascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:text="2 años • Santa Fe"
+                    android:textColor="@color/paw_text_secondary"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Botones de Acción con Bordes Redondeados (26dp) y Borde Visible -->
+    <LinearLayout
+        android:id="@+id/layout_botones_accion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pasar"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:text="@string/pm_pasar"
+            android:textColor="@color/paw_text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="35dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Button"
+            app:strokeColor="@color/paw_border"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_me_interesa"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paw_primary"
+            android:text="@string/pm_me_interesa"
+            android:textColor="@color/paw_on_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="26dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.PawMatch.Button" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_explorar_vacio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/pm_sin_mascotas_explorar"
+        android:textColor="@color/paw_text_secondary"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo_explorar" />
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/paw_bottom_navigation_height"
+        android:background="@color/paw_surface"
+        app:elevation="8dp"
+        app:itemIconTint="@color/paw_primary"
+        app:itemTextColor="@color/paw_primary"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

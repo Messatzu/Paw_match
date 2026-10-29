@@ -1,4 +1,3 @@
-
 # ==========================================
 # PawMatch - Android Studio / Java
 # ==========================================
@@ -7,27 +6,50 @@
 .gradle/
 **/build/
 .kotlin/
+gradle-app.setting
+.gradletasknamecache
 
-# Configuración local del SDK
+# Configuración local del SDK y emuladores
 local.properties
+.android/
+
+# Variables de entorno locales (conservar plantillas compartidas)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
 
 # Android Studio / IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+*.ipr
 out/
 
-# Archivos compilados
+# Archivos compilados y paquetes de distribución
 *.apk
+*.apk.idsig
+*.apks
 *.aab
 *.ap_
 *.dex
 *.class
+/app/debug/
+/app/release/
 
 # Claves y certificados privados
 *.jks
 *.keystore
 *.p12
+*.pfx
 *.pem
+*.key
+key.properties
+keystore.properties
+signing.properties
+secrets.properties
+/.aws/
 
 # Builds nativos
 .externalNativeBuild/
@@ -37,14 +59,21 @@ out/
 captures/
 *.log
 *.hprof
+*.jfr
+hs_err_pid*
+replay_pid*
 
 # Archivos temporales
 *.tmp
+*.temp
 *.bak
+*.orig
 *.swp
+*.swo
 *~
 
 # Sistema operativo
 .DS_Store
+._*
 Thumbs.db
-
+Desktop.ini

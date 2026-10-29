@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:orientation="vertical">
-    <TextView android:id="@+id/pm_modo" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:padding="12dp" android:textSize="20sp" />
-    <Button android:id="@+id/pm_cambiar_modo" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="@string/pm_cambiar_modo" />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button android:id="@+id/pm_explorar" android:layout_width="0dp" android:layout_weight="1"
-            android:layout_height="wrap_content" android:text="@string/pm_explorar" />
-        <Button android:id="@+id/pm_solicitudes" android:layout_width="0dp" android:layout_weight="1"
-            android:layout_height="wrap_content" android:text="@string/pm_solicitudes" />
-    </LinearLayout>
-    <Button android:id="@+id/pm_reiniciar" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="@string/pm_reiniciar" />
-    <androidx.fragment.app.FragmentContainerView android:id="@+id/pm_contenedor"
-        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paw_background">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/pm_contenedor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <ProgressBar
+        android:id="@+id/authProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/paw_primary" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnToggleTheme"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:padding="12dp"
+        android:background="@drawable/bg_theme_toggle"
+        android:contentDescription="@string/appearance_enable_dark"
+        app:srcCompat="@drawable/ic_theme_moon" />
+</FrameLayout>

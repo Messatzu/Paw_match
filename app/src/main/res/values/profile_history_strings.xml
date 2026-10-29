@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_adoption_history_title">Historial de adopciones</string>
+    <string name="profile_publication_history_title">Historial de publicaciones</string>
+    <string name="profile_publication_history_empty">Todavía no hay publicaciones adoptadas o dadas de baja.</string>
+    <string name="profile_history_adopted">Adoptada</string>
+    <string name="profile_history_withdrawn">Publicación dada de baja</string>
+    <string name="profile_history_pet_details">%1$s • %2$s</string>
+    <string name="profile_history_pet_photo">Foto de %1$s</string>
+    <string name="history_detail_adoption_title">Detalle de la adopción</string>
+    <string name="history_detail_publication_title">Detalle de la publicación</string>
+    <string name="history_detail_adopter_title">Persona adoptante</string>
+    <string name="history_detail_chat_title">Chat de esta adopción</string>
+    <string name="history_detail_pet_title">Información de la mascota</string>
+    <string name="history_detail_pet_summary">%1$s • %2$s • %3$s • %4$s</string>
+    <string name="history_detail_labeled_value">%1$s: %2$s</string>
+    <string name="history_detail_no_adopter">Esta publicación se dio de baja sin una adopción.</string>
+    <string name="history_detail_adopter_unavailable">No hay datos de la persona adoptante disponibles.</string>
+    <string name="history_detail_no_chat">Esta publicación no tiene un chat de adopción asociado.</string>
+</resources>

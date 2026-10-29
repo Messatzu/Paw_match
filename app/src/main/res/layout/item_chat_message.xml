@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingVertical="4dp">
+    <LinearLayout
+        android:id="@+id/chatMessageBubble"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp" android:layout_gravity="end"
+        android:orientation="vertical" android:elevation="1dp"
+        android:background="@drawable/bg_chat_message_sent">
+        <TextView
+            android:id="@+id/tvChatMessageText"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:maxWidth="280dp" android:paddingHorizontal="12dp" android:paddingTop="8dp"
+            android:textSize="16sp" android:textColor="@color/paw_text_primary"
+            android:textIsSelectable="true" tools:text="Hola, me gustaría conocer a Luna." />
+        <TextView
+            android:id="@+id/tvChatMessageTime"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp" android:paddingTop="3dp" android:paddingBottom="6dp"
+            android:gravity="end" android:textSize="11sp" android:textColor="@color/paw_text_primary"
+            tools:text="14:30" />
+    </LinearLayout>
+</FrameLayout>

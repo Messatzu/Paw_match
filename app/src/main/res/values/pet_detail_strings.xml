@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pet_detail_publisher_title">La da en adopción</string>
+    <string name="pet_detail_state_title">Estado de la adopción</string>
+    <string name="pet_detail_available">Disponible para adoptar</string>
+    <string name="pet_detail_available_body">Esta mascota está disponible para recibir solicitudes de adopción.</string>
+    <string name="pet_detail_request_sent">Solicitud enviada</string>
+    <string name="pet_detail_pending_adopter">Ya enviaste una solicitud para esta mascota. Está pendiente de respuesta. El chat se habilitará cuando el publicador la acepte.</string>
+    <string name="pet_detail_pending_publisher">Esta solicitud está pendiente de tu respuesta. Al aceptarla se habilitará el chat con la persona solicitante.</string>
+    <string name="pet_detail_accepted_adopter">Tu solicitud fue aceptada. Esta adopción tiene un chat asociado con el publicador.</string>
+    <string name="pet_detail_accepted_publisher">Aceptaste esta solicitud. Esta adopción tiene un chat asociado con la persona adoptante.</string>
+    <string name="pet_detail_rejected">La solicitud fue rechazada. No tiene un chat de adopción habilitado.</string>
+    <string name="pet_detail_already_adopted">Esta mascota ya fue adoptada y no recibe nuevas solicitudes.</string>
+    <string name="pet_detail_unavailable">El detalle ya no está disponible. Volvé a la pantalla anterior para actualizar la lista.</string>
+</resources>
